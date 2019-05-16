@@ -17,7 +17,6 @@
 %%  Font and language setup:  %%
 
 \RequirePackage{fontspec, polyglossia}
-\defaultfontfeatures{Mapping={tex-text}}
 \setmainlanguage[variant=uk,ordinalmonthday=false]{english}
 \setmainfont{Junicode}[UprightFeatures={StylisticSet={18}, Numbers={OldStyle}},ItalicFeatures={StylisticSet={18}, Numbers={OldStyle}},BoldFeatures={StylisticSet={18}, Numbers={OldStyle}}]
 \newfontfamily{\vanillafont}{Junicode}
@@ -48,8 +47,15 @@
 \newcommand{\subs}[1]{\raisebox{-.35ex}{\scriptbig #1}}
 \newcommand{\supers}[1]{\raisebox{.7ex}{\scriptbig #1}}
 
+\RequirePackage{soul}
+\sodef{\emph}{\itshape}{.1em}{.5em plus .15em minus .1em}{.4em plus .3em minus .15em}
+
 \RequirePackage{newunicodechar}
-\newunicodechar{ʼ}{’}
+\newunicodechar{ʼ}{’} % Not in IM Fell; identical in Junicode
+\newunicodechar{⸺}{\textemdash\textemdash} % This is a safe substitution in Junicode
+
+\RequirePackage[allowbreakbefore]{extdash}
+\newunicodechar{—}{\Emdash} % Spaced emdash
 
 %%  Page geometry:  %%
 
@@ -70,7 +76,7 @@
 
 %%  Empty last page:  %%
 
-\AtEndDocument{\atendtext\cleartoevenpage[\null\thispagestyle{empty}]\null\pagestyle{empty}}
+\AtEndDocument{\atendtext\cleartoevenpage[\null\thispagestyle{cleared}]\null\pagestyle{cleared}}
 
 %%  Frame formatting:  %%
 

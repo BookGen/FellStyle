@@ -17,7 +17,6 @@
 %%  Font and language setup:  %%
 
 \RequirePackage{fontspec, polyglossia}
-\defaultfontfeatures{Mapping={tex-text}}
 \setmainlanguage[variant=uk,ordinalmonthday=false]{english}
 \setmainfont{Charis SIL}
 \newfontfamily{\vanillafont}{Charis SIL}
@@ -29,6 +28,13 @@
 \newcommand{\fellflower}[1]{{\IMFlowerfontB #1}}
 \newcommand{\subs}[1]{\raisebox{-.35ex}{\scriptsize #1}}
 \newcommand{\supers}[1]{\raisebox{.7ex}{\scriptsize #1}}
+
+\RequirePackage{soul}
+\sodef{\emph}{\itshape}{.1em}{.5em plus .15em minus .1em}{.4em plus .3em minus .15em}
+
+\RequirePackage{newunicodechar}
+\RequirePackage[allowbreakbefore]{extdash}
+\newunicodechar{—}{\Emdash} % Spaced emdash
 
 %%  Page geometry:  %%
 
@@ -45,7 +51,7 @@
 
 %%  Empty last page:  %%
 
-\AtEndDocument{\atendtext\cleartoevenpage[\null\thispagestyle{empty}]\null\pagestyle{empty}}
+\AtEndDocument{\atendtext\cleartoevenpage[\null\thispagestyle{cleared}]\null\pagestyle{cleared}}
 
 %%  Frame formatting:  %%
 
