@@ -353,6 +353,7 @@ The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarin
 \pagestyle{simple}
 \headstyles{classical}
 \chapterstyle{verbose7c}
+\newcommand{\mainchapterstyle}{verbose7c}
 \newcommand{\atendtext}{\centering\par\vfill\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tinybig \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 12pt Junicode, a font inspired by the early eighteenth­‑century Oxford University Press. More information about this font and its origins can be found on its website, \url{https://junicode.sourceforge.net/}.\nolinebreak\qquad Headings have been set in the closely­‑related Fell Types in various cuts and sizes—as are certain spans of text, for effect. The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
 \tolerance=5000
 
@@ -368,6 +369,7 @@ The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarin
     \makeevenhead{chapter}{}{}{}
     \makeoddhead{chapter}{}{}{}
     \renewcommand{\atendtext}{}
+    \renewcommand{\mainchapterstyle}{7c}
 }
 \renewcommand{\mainmatter}{
     \cleardoublepage
@@ -376,7 +378,7 @@ The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarin
     \openany
     \pagestyle{simple}
     \setcounter{chapter}{0}
-    \chapterstyle{7c}
+    \chapterstyle{\mainchapterstyle}
     \makeevenhead{chapter}{}{}{}
     \makeoddhead{chapter}{}{}{}
 }

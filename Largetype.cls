@@ -307,6 +307,7 @@ Text ornaments and drop caps have been set in the Fell Types, digitally reproduc
 \pagestyle{simple}
 \headstyles{classical}
 \chapterstyle{verbose7c}
+\newcommand{\mainchapterstyle}{verbose7c}
 \newcommand{\atendtext}{\centering\par\vfill\pagebreak[1]\null\vfill\parbox[b]{\textwidth}{\tiny \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read. More information about this font and its design can be found on its website, \url{https://software.sil.com/charis/}.\nolinebreak\qquad Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
 \tolerance=9999
 
@@ -322,6 +323,7 @@ Text ornaments and drop caps have been set in the Fell Types, digitally reproduc
     \makeevenhead{chapter}{}{}{}
     \makeoddhead{chapter}{}{}{}
     \renewcommand{\atendtext}{}
+    \renewcommand{\mainchapterstyle}{7c}
 }
 \renewcommand{\mainmatter}{
     \cleardoublepage
@@ -330,7 +332,7 @@ Text ornaments and drop caps have been set in the Fell Types, digitally reproduc
     \openany
     \pagestyle{simple}
     \setcounter{chapter}{0}
-    \chapterstyle{7c}
+    \chapterstyle{mainchapterstyle}
     \makeevenhead{chapter}{}{}{}
     \makeoddhead{chapter}{}{}{}
 }
