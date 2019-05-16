@@ -125,7 +125,7 @@
 \renewcommand*{\printchapternum}{}
 \renewcommand*{\afterchapternum}{}
 \renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\centering\parbox[m][\topheight][b]{\smallwidth}{\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{16pt}}\par}  %  The box size of the chapter number was chosen to align the left edge with the left edge of the typeblock. Note 30pt is roughly the maximum the width of 3 \IMLARGE numerals (numeral size varies)---thus, there is 2pt padding for a large 3-digit number.
+\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{\smallwidth}{\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{16pt}}\end{center}}  %  The box size of the chapter number was chosen to align the left edge with the left edge of the typeblock. Note 30pt is roughly the maximum the width of 3 \IMLARGE numerals (numeral size varies)---thus, there is 2pt padding for a large 3-digit number.
 \renewcommand*{\afterchaptertitle}{\vspace{0pt plus 6pt minus 2pt}}
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chapnumfont}{\IMLARGE}
@@ -138,7 +138,7 @@
 \renewcommand*{\printchapternum}{}
 \renewcommand*{\afterchapternum}{}
 \renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\centering\parbox[m][\topheight][b]{\smallwidth}{{\centering {\IMlarge \seriesinfo}\par\medskip {\IMLARGE \fellpattern{a} \titleinfo{} \fellpattern{c}}\par\rule[.35em]{\smallwidth}{1pt}\par}\vfill\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{16pt}}\par}  %  The box size of the chapter number was chosen to align the left edge with the left edge of the typeblock. Note 30pt is roughly the maximum the width of 3 \IMLARGE numerals (numeral size varies)---thus, there is 2pt padding for a large 3-digit number.
+\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{\smallwidth}{{\centering {\IMlarge \seriesinfo}\par\medskip {\IMLARGE \fellpattern{a} \titleinfo{} \fellpattern{c}}\par\rule[.35em]{\smallwidth}{1pt}\par}\vfill\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{16pt}}\end{center}}  %  The box size of the chapter number was chosen to align the left edge with the left edge of the typeblock. Note 30pt is roughly the maximum the width of 3 \IMLARGE numerals (numeral size varies)---thus, there is 2pt padding for a large 3-digit number.
 \renewcommand*{\afterchaptertitle}{\vspace{0pt plus 6pt minus 2pt}}
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chapnumfont}{\IMLARGE}
@@ -354,7 +354,7 @@ The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarin
 \headstyles{classical}
 \chapterstyle{verbose7c}
 \newcommand{\mainchapterstyle}{verbose7c}
-\newcommand{\atendtext}{\centering\par\vfill\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tinybig \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 12pt Junicode, a font inspired by the early eighteenth­‑century Oxford University Press. More information about this font and its origins can be found on its website, \url{https://junicode.sourceforge.net/}.\nolinebreak\qquad Headings have been set in the closely­‑related Fell Types in various cuts and sizes—as are certain spans of text, for effect. The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
+\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tinybig \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 12pt Junicode, a font inspired by the early eighteenth­‑century Oxford University Press. More information about this font and its origins can be found on its website, \url{https://junicode.sourceforge.net/}.\nolinebreak\qquad Headings have been set in the closely­‑related Fell Types in various cuts and sizes—as are certain spans of text, for effect. The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
 \tolerance=5000
 
 %%  Matter handling:  %%

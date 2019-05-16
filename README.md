@@ -32,7 +32,7 @@ To make usage of these styles simpler, you might want to set up a makefile in yo
 	# DRAFTS := Drafts
 	# export DRAFTS
 
-	default: bookgen fellstyle
+	default: fellstyle bookgen
 
 	# BookGen default make:
 	bookgen:

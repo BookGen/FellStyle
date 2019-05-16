@@ -100,7 +100,7 @@
 \renewcommand*{\printchapternum}{}
 \renewcommand*{\afterchapternum}{}
 \renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\centering\parbox[m][\topheight][b]{274pt}{\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{22pt}}\par}
+\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{274pt}{\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{22pt}}\end{center}}
 \renewcommand*{\afterchaptertitle}{\vspace{0pt plus 9pt minus 3pt}}
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chapnumfont}{\LARGE}
@@ -113,7 +113,7 @@
 \renewcommand*{\printchapternum}{}
 \renewcommand*{\afterchapternum}{}
 \renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\centering\parbox[m][\topheight][b]{274pt}{{\centering {\small \seriesinfo}\par\medskip {\large \fellpattern{a} \titleinfo{} \fellpattern{c}}\par\rule[.35em]{274pt}{1pt}\par}\vfill\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{22pt}}\par}
+\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{274pt}{{\centering {\small \seriesinfo}\par\medskip {\large \fellpattern{a} \titleinfo{} \fellpattern{c}}\par\rule[.35em]{274pt}{1pt}\par}\vfill\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{22pt}}\end{center}}
 \renewcommand*{\afterchaptertitle}{\vspace{0pt plus 9pt minus 3pt}}
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chapnumfont}{\LARGE}
@@ -308,7 +308,7 @@ Text ornaments and drop caps have been set in the Fell Types, digitally reproduc
 \headstyles{classical}
 \chapterstyle{verbose7c}
 \newcommand{\mainchapterstyle}{verbose7c}
-\newcommand{\atendtext}{\centering\par\vfill\pagebreak[1]\null\vfill\parbox[b]{\textwidth}{\tiny \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read. More information about this font and its design can be found on its website, \url{https://software.sil.com/charis/}.\nolinebreak\qquad Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
+\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\textwidth}{\tiny \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read. More information about this font and its design can be found on its website, \url{https://software.sil.com/charis/}.\nolinebreak\qquad Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
 \tolerance=9999
 
 %%  Matter handling:  %%
