@@ -125,7 +125,7 @@
 \renewcommand*{\printchapternum}{}
 \renewcommand*{\afterchapternum}{}
 \renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{\smallwidth}{\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{16pt}}\end{center}}  %  The box size of the chapter number was chosen to align the left edge with the left edge of the typeblock. Note 30pt is roughly the maximum the width of 3 \IMLARGE numerals (numeral size varies)---thus, there is 2pt padding for a large 3-digit number.
+\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{\smallwidth}{\noindent\llap{\makebox[32pt][l]{\chapnumfont \thechapter}}{\chaptitlefont\enquote*{##1}}\par\vspace{16pt}}\end{center}}  %  The box size of the chapter number was chosen to align the left edge with the left edge of the typeblock. Note 30pt is roughly the maximum the width of 3 \IMLARGE numerals (numeral size varies)---thus, there is 2pt padding for a large 3-digit number.
 \renewcommand*{\afterchaptertitle}{\vspace{0pt plus 6pt minus 2pt}}
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chapnumfont}{\IMLARGE}
@@ -138,7 +138,7 @@
 \renewcommand*{\printchapternum}{}
 \renewcommand*{\afterchapternum}{}
 \renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{\smallwidth}{{\centering {\IMlarge \seriesinfo}\par\medskip {\IMLARGE \fellpattern{a} \titleinfo{} \fellpattern{c}}\par\rule[.35em]{\smallwidth}{1pt}\par}\vfill\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{16pt}}\end{center}}  %  The box size of the chapter number was chosen to align the left edge with the left edge of the typeblock. Note 30pt is roughly the maximum the width of 3 \IMLARGE numerals (numeral size varies)---thus, there is 2pt padding for a large 3-digit number.
+\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{\smallwidth}{{\centering {\IMlarge \seriesinfo}\par\medskip {\IMLARGE \fellpattern{a} \titleinfo{} \fellpattern{c}}\par\rule[.35em]{\smallwidth}{1pt}\par}\vfill\noindent\llap{\makebox[32pt][l]{\chapnumfont \thechapter}}{\chaptitlefont\enquote*{##1}}\par\vspace{16pt}}\end{center}}  %  The box size of the chapter number was chosen to align the left edge with the left edge of the typeblock. Note 30pt is roughly the maximum the width of 3 \IMLARGE numerals (numeral size varies)---thus, there is 2pt padding for a large 3-digit number.
 \renewcommand*{\afterchaptertitle}{\vspace{0pt plus 6pt minus 2pt}}
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chapnumfont}{\IMLARGE}

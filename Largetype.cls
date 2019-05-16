@@ -100,7 +100,7 @@
 \renewcommand*{\printchapternum}{}
 \renewcommand*{\afterchapternum}{}
 \renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{274pt}{\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{22pt}}\end{center}}
+\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{274pt}{\noindent\llap{\makebox[32pt][l]{\chapnumfont \thechapter}}{\chaptitlefont\enquote*{##1}}\par\vspace{22pt}}\end{center}}
 \renewcommand*{\afterchaptertitle}{\vspace{0pt plus 9pt minus 3pt}}
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chapnumfont}{\LARGE}
@@ -113,7 +113,7 @@
 \renewcommand*{\printchapternum}{}
 \renewcommand*{\afterchapternum}{}
 \renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{274pt}{{\centering {\small \seriesinfo}\par\medskip {\large \fellpattern{a} \titleinfo{} \fellpattern{c}}\par\rule[.35em]{274pt}{1pt}\par}\vfill\noindent\llap{\makebox[32pt][l]{\chapnumfont \arabic{chapter}}}{\chaptitlefont\enquote*{##1}}\par\vspace{22pt}}\end{center}}
+\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{274pt}{{\centering {\small \seriesinfo}\par\medskip {\large \fellpattern{a} \titleinfo{} \fellpattern{c}}\par\rule[.35em]{274pt}{1pt}\par}\vfill\noindent\llap{\makebox[32pt][l]{\chapnumfont \thechapter}}{\chaptitlefont\enquote*{##1}}\par\vspace{22pt}}\end{center}}
 \renewcommand*{\afterchaptertitle}{\vspace{0pt plus 9pt minus 3pt}}
 \renewcommand*{\chapnamefont}{}
 \renewcommand*{\chapnumfont}{\LARGE}
