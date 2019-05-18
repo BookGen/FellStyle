@@ -5,7 +5,7 @@
 
 %%  Class loading and defaults:  %%
 
-\LoadClass[a4paper, 17pt, openany, twoside, extrafontsizes]{memoir}
+\LoadClass[a4paper, 17pt, openany, twoside, extrafontsizes, showtrims]{memoir}
 
 \RequireXeTeX
 
@@ -41,7 +41,9 @@
 \setheaderspaces{*}{17pt}{*}
 % \setstocksize{11in}{8.5in} % This sets the page up on letter stock
 % \settrimmedsize{11in}{*}{0.7} % A4 paper is taller than letter, so we need to scale it down
-% \setpagecc{\paperheight}{\paperwidth}{*} % This centres the page on the stock
+% \setpagecc{\paperheight}{\paperwidth}{*}  %  This centres the page on the stock
+% \trimFrame
+\showtrimsoff
 \checkandfixthelayout[nearest]
 \newlength{\topheight}
 \setlength{\topheight}{118.4pt} % This is the amount of top padding needed to make the resultant text box square

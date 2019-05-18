@@ -3,7 +3,7 @@
 
 %%  Class loading and defaults:  %%
 
-\LoadClass[ebook, 14pt, openany, twoside, extrafontsizes]{memoir}
+\LoadClass[ebook, 14pt, openany, twoside, extrafontsizes, showtrims]{memoir}
 
 \RequireXeTeX
 
@@ -38,7 +38,9 @@
 \setheadfoot{\baselineskip}{28pt}
 \setheaderspaces{*}{14pt}{*}
 % \setstocksize{11in}{8.5in} % This sets the page up on letter stock
-% \setpagecc{\paperheight}{\paperwidth}{*} % This centres the page on the stock
+% \setpagecc{\paperheight}{\paperwidth}{*}  %  This centres the page on the stock
+% \trimFrame
+\showtrimsoff
 \checkandfixthelayout[nearest]
 \newlength{\topheight}
 \setlength{\topheight}{93.5pt} % This is the amount of top padding needed to make the resultant text box 4:3

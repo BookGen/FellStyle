@@ -5,7 +5,7 @@
 
 %%  Class loading and defaults:  %%
 
-\LoadClass[a5paper, 12pt, openany, twoside, extrafontsizes]{memoir}
+\LoadClass[a5paper, 12pt, openany, twoside, extrafontsizes, showtrims]{memoir}
 
 \RequireXeTeX
 
@@ -68,6 +68,8 @@
 \setheaderspaces{*}{12pt}{*}
 % \setstocksize{11in}{8.5in} % This sets the page up on letter stock
 % \setpagecc{\paperheight}{\paperwidth}{*}  %  This centres the page on the stock
+% \trimFrame
+\showtrimsoff
 \checkandfixthelayout[nearest]
 \newlength{\topheight}
 \setlength{\topheight}{92.5pt} % This is the amount of top padding needed to make the resultant text box square

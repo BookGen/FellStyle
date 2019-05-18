@@ -2,7 +2,7 @@
 
 A collection of styles for use with [BookGen](https://github.com/marrus-sh/BookGen/) inspired by older English typography. Featuring :
 
-+ Standard and Largetype PDF forms
++ Standard, Largetype, and Trade PDF forms
 + Additional information on chapter­‑only PDFs for ease of distribution
 + CSS stylesheet
 
@@ -17,6 +17,14 @@ Both PDF styles require the [IM Fell](https://iginomarini.com/fell/the-revival-f
 The Standard Edition style requires [Junicode](http://junicode.sourceforge.net/).
 
 The Largetype Edition style requires [Charis SIL](https://software.sil.org/charis/).
+
+The Trade Edition style required Palatino.
+
+### Caveats:
+
+The IM Fell fonts used in the Standard and Largetype Editions provide inconsistent results ( in my experience ) when printing PDFs with embedded fonts. Consequently, you may want to use the `VECTORIZE` option in BookGen when compiling these editions for print.
+
+The Trade Edition conforms to industry standards (notably, setting equal top and bottom margins) and uses only the Palatino font. It is intended for Print­‑on­‑Demand distribution and similar.
 
 ## Makefile configuration
 
