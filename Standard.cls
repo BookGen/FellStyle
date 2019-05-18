@@ -54,13 +54,14 @@
 \RequirePackage{newunicodechar}
 \newunicodechar{ʼ}{’} % Not in IM Fell; identical in Junicode
 \newunicodechar{⸺}{\textemdash\textemdash} % This is a safe substitution in Junicode
+\newunicodechar{⁓}{\thinspace\scalebox{1.7}[1.35]{\textasciitilde}\thinspace} % Not in Junicode
 
 \RequirePackage[allowbreakbefore]{extdash}
 \newunicodechar{—}{\Emdash} % Spaced emdash
 
 %%  Page geometry:  %%
 
-\settypeblocksize{403.5pt}{311pt}{*} % This gives 28 lines per page with Junicode, which is my preferred text height
+\settypeblocksize{403.5pt}{311pt}{*} % This gives 28 lines per page, which is my preferred text height
 \setlrmargins{54pt}{*}{*} % This gives us at least .75in on the spine, always
 \setulmargins{70pt}{*}{*}  %  This creates a top:bottom ratio of almost exactly 4:7, which looks very nice
 \setheadfoot{\baselineskip}{24pt}
@@ -199,14 +200,14 @@
 \sethangfrom{\noindent #1}
 \makeheadstyles{classical}{
 	\nobookblankpage
-	\renewcommand*{\beforebookskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][96pt][c]{\smallwidth}\vfill\vfill}
+	\renewcommand*{\beforebookskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][\topheight][c]{\smallwidth}\vfill\vfill}
 	\renewcommand*{\afterbookskip}{\vfill\end{minipage}\end{titlingpage*}}
 	\renewcommand{\printbookname}{}
 	\renewcommand{\booknamenum}{}
 	\renewcommand{\printbooknum}{}
 	\renewcommand{\booktitlefont}{\centering\IMHuge}
 	\nopartblankpage
-	\renewcommand*{\beforepartskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][96pt][c]{\smallwidth}\vfill\vfill}
+	\renewcommand*{\beforepartskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][\topheight][c]{\smallwidth}\vfill\vfill}
 	\renewcommand*{\afterpartskip}{\vfill\end{minipage}\end{titlingpage*}}
 	\renewcommand{\printpartname}{}
 	\renewcommand{\partnamenum}{}
@@ -222,11 +223,19 @@
 
 %%  Small pages:  %%
 
-\newenvironment{smallpage}[1]{\clearpage\null\vfill\begin{center}\begin{minipage}[t][\smallheight][t]{\smallwidth}\parindent=0pt\thispagestyle{empty}\IMlarge\parbox[m][\topheight][t]{\smallwidth}{\centering\IMLARGE\begin{vplace}[2]#1\end{vplace}\rule[.35em]{\smallwidth}{1pt}}\par\vspace{0pt plus 5pt minus 2.5pt}}{\end{minipage}\end{center}}
+\newenvironment{smallpage}[1]{
+	\clearpage\null\vfill
+	\begin{center}\begin{minipage}[t][\smallheight][t]{\smallwidth}
+		\parindent=0pt\thispagestyle{empty}
+		\large\parbox[m][\topheight][t]{\smallwidth}{
+			\centering\LARGE\begin{vplace}[2]#1\end{vplace}\rule[.35em]{\smallwidth}{1pt}
+		}
+		\par\vspace{0pt plus 7pt minus 3.5pt}
+}{\end{minipage}\end{center}}
 
 %%  Contents formatting:  %%
 
-\setpnumwidth{23pt}  %  Max width of 4-digit italic number
+\setpnumwidth{23pt} % Max width of 4-digit italic number
 \setrmarg{23pt}
 \renewcommand{\aftertoctitle}{\thispagestyle{empty}}
 \setlength{\cftbeforepartskip}{12pt}
@@ -237,7 +246,7 @@
 \renewcommand*{\cftpartformatpnum}[1]{\hfill}
 \setlength{\cftbeforechapterskip}{4pt}
 \setlength{\cftchapterindent}{0pt}
-\setlength{\cftchapternumwidth}{24.75pt}  %  Width of "000. "
+\setlength{\cftchapternumwidth}{24.75pt} % Width of "000. "
 \renewcommand{\cftchapterfont}{\IMlarge}
 \renewcommand{\cftchapteraftersnum}{.}
 \renewcommand{\cftchapterdotsep}{1.9292}
@@ -277,8 +286,10 @@
 \renewcommand{\maketitle}{
 	\pagestyle{empty}
 	\begin{smallpage}
-		{{\large \seriesinfo}\par\bigskip{\Huge \fellpattern{a} \titleinfo{} \fellpattern{c}}}
-		\descriptioninfo
+		{{\IMlarge \seriesinfo}
+		\par\bigskip
+		\par{\IMHuge \fellpattern{a} \titleinfo{} \fellpattern{c}}}
+		\par\descriptioninfo
 	\end{smallpage}
 	\clearpage\null\cleartorecto
 	\begin{center}
@@ -296,10 +307,10 @@
 
 		\fbox{\parbox[c][\dimexpr \smallheight-\fboxrule-\fboxrule-\fboxsep-\fboxsep][t]{\dimexpr \smallwidth-\fboxrule-\fboxrule-\fboxsep-\fboxsep}{
 			\centering
-			\rule[.35em]{192pt}{1pt}
+			\rule[.35em]{\dimexpr (\smallwidth * 3) / 5}{1pt}
 			\par\vspace{3.6pt}  %  Compensates for descent being larger than ascent
 			\par{\IMHUGE \caps{\MakeUppercase{\titleinfo}}}
-			\par\rule[.35em]{192pt}{1pt}
+			\rule[.35em]{\dimexpr (\smallwidth * 3) / 5}{1pt}
 			\par\vspace{14.6pt}  %  16pt - 1.4pt
 			\par\textsc{\IMlarge being a story of}
 			\par\vspace{7.2pt}  %  12pt - 2.8pt - 2pt

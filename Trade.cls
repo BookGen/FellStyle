@@ -1,11 +1,9 @@
-% This style requires Charis SIL and the IM Fell Types.
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{Largetype}
 
 %%  Class loading and defaults:  %%
 
-\LoadClass[a4paper, 17pt, openany, twoside, extrafontsizes]{memoir}
+\LoadClass[ebook, 14pt, openany, twoside, extrafontsizes]{memoir}
 
 \RequireXeTeX
 
@@ -17,14 +15,9 @@
 
 \RequirePackage{fontspec, polyglossia}
 \setmainlanguage[variant=uk,ordinalmonthday=false]{english}
-\setmainfont{Charis SIL}
-\newfontfamily{\vanillafont}{Charis SIL}
-\newfontface{\initials}{IM FELL THREE LINE PICA PRO}
-\newfontface{\IMFlowerfontA}{IM FELL FLOWERS 1}
-\newfontface{\IMFlowerfontB}{IM FELL FLOWERS 2}
+\setmainfont{Palatino}
+\newfontfamily{\vanillafont}{Palatino}
 \newcommand{\textvanilla}[1]{{\vanillafont #1}}
-\newcommand{\fellpattern}[1]{\raisebox{.35em}{\IMFlowerfontA #1}}
-\newcommand{\fellflower}[1]{{\IMFlowerfontB #1}}
 \newcommand{\subs}[1]{\raisebox{-.35ex}{\scriptsize #1}}
 \newcommand{\supers}[1]{\raisebox{.7ex}{\scriptsize #1}}
 
@@ -32,23 +25,23 @@
 
 \RequirePackage{soul} % Used in title
 
+\RequirePackage{newunicodechar}
+\newunicodechar{ʼ}{’} % Not in Palatino
+\newunicodechar{⸺}{\textemdash\textemdash} % This is a safe substitution in Palatino
+\newunicodechar{⁓}{\scalebox{1.7}[1.35]{\textasciitilde}} % Not in Palatino
+
 %%  Page geometry:  %%
 
-\settypeblocksize{608.4pt}{370.25pt}{*} % This gives 28 lines per page, which is my preferred text height; the page width is set to match \smallwidth (see below) for shorter, more readable line widths
+\settypeblocksize{486.9pt}{295pt}{*} % This gives 28 lines per page which is my preferred text height
 \setlrmargins{*}{*}{1} % Equal horizontal margins
-\setulmargins{85pt}{*}{*} % This creates a top:bottom ratio of almost exactly 4:7, which looks very nice
-\setheadfoot{\baselineskip}{34pt}
-\setheaderspaces{*}{17pt}{*}
+\setulmargins{*}{*}{1} % Equal vertical margins
+\setheadfoot{\baselineskip}{28pt}
+\setheaderspaces{*}{14pt}{*}
 % \setstocksize{11in}{8.5in} % This sets the page up on letter stock
-% \settrimmedsize{11in}{*}{0.7} % A4 paper is taller than letter, so we need to scale it down
 % \setpagecc{\paperheight}{\paperwidth}{*} % This centres the page on the stock
 \checkandfixthelayout[nearest]
 \newlength{\topheight}
-\setlength{\topheight}{118.4pt} % This is the amount of top padding needed to make the resultant text box square
-\newlength{\smallheight}
-\newlength{\smallwidth}
-\setlength{\smallheight}{523.75pt} % This height creates a faux-centered (actually about a quarter-inch closer to the top) small page
-\setlength{\smallwidth}{370.25pt} % This mimics the 1/sqrt(2) ratio of the page
+\setlength{\topheight}{93.5pt} % This is the amount of top padding needed to make the resultant text box 4:3
 
 %%  Empty last page:  %%
 
@@ -57,7 +50,7 @@
 %%  Frame formatting:  %%
 
 \setlength{\fboxrule}{1pt}
-\setlength{\fboxsep}{33pt}
+\setlength{\fboxsep}{27pt}
 
 %%  List formatting:  %%
 
@@ -79,7 +72,7 @@
 \setlength{\footmarksep}{-1.7em}
 \setlength{\footparindent}{1.7em}
 \setlength{\footnotesep}{\onelineskip}
-\setfootins{28pt plus 17pt minus 12pt}{22pt}
+\setfootins{24pt plus 14pt minus 9pt}{19pt}
 \feetbelowfloat
 \renewcommand{\@makefntext}[1]{\makefootmark #1}
 \renewcommand{\foottextfont}{\scriptsize}
@@ -95,12 +88,12 @@
 	\renewcommand*{\printchapternonum}{}
 	\renewcommand{\printchaptertitle}[1]{
 		\begin{center}
-			\parbox[m][\topheight][t]{\smallwidth}{
+			\parbox[m][\topheight][t]{\textwidth}{
 				\centering\begin{vplace}[2]\chaptitlefont ##1\end{vplace}
 			}
 		\end{center}
 	}
-	\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 9pt minus 3pt}}
+	\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 7pt minus 2.25pt}}
 	\renewcommand*{\chapnamefont}{}
 	\renewcommand*{\chapnumfont}{}
 	\renewcommand*{\chaptitlefont}{\LARGE}
@@ -113,15 +106,12 @@
 	\renewcommand*{\afterchapternum}{}
 	\renewcommand*{\printchapternonum}{}
 	\renewcommand{\printchaptertitle}[1]{
-		\begin{center}
-			\parbox[m][\topheight][b]{\smallwidth}{
-				\noindent\llap{\makebox[45pt][l]{\chapnumfont \thechapter}}{
-					\chaptitlefont\enquote*{##1}
-				}\par\vspace{22pt}
-			}
-		\end{center}
+		\parbox[m][\topheight][b]{\textwidth}{
+			\noindent\makebox[38pt][l]{\chapnumfont \thechapter}
+				\chaptitlefont\enquote*{##1}\par\vspace{19pt}
+		}
 	}
-	\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 9pt minus 3pt}}
+	\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 7pt minus 2.25pt}}
 	\renewcommand*{\chapnamefont}{}
 	\renewcommand*{\chapnumfont}{\LARGE}
 	\renewcommand*{\chaptitlefont}{\LARGE\itshape}
@@ -134,21 +124,18 @@
 	\renewcommand*{\afterchapternum}{}
 	\renewcommand*{\printchapternonum}{}
 	\renewcommand{\printchaptertitle}[1]{
-		\begin{center}
-			\parbox[m][\topheight][b]{\smallwidth}{
-				\begin{center}
-					{\large \seriesinfo}
-					\par\medskip
-					\par{\LARGE \fellpattern{a} \caps{\MakeUppercase{\titleinfo}} \fellpattern{c}}
-					\par\rule[.35em]{\smallwidth}{1pt}
-				\end{center}
-				\vfill\noindent\llap{\makebox[45pt][l]{\chapnumfont \thechapter}}{
-					\chaptitlefont\enquote*{##1}
-				}\par\vspace{22pt}
-			}
-		\end{center}
+		\parbox[m][\topheight][b]{\textwidth}{
+			\begin{center}
+				{\large \seriesinfo}
+				\par\medskip
+				\par{\LARGE · \caps{\MakeUppercase{\titleinfo}} ·}
+				\par\rule[.35em]{\textwidth}{1pt}
+			\end{center}
+			\vfill\noindent\makebox[38pt][l]{\chapnumfont \thechapter}
+				\chaptitlefont\enquote*{##1}\par\vspace{19pt}
+		}
 	}
-	\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 9pt minus 3pt}}
+	\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 7pt minus 2.25pt}}
 	\renewcommand*{\chapnamefont}{}
 	\renewcommand*{\chapnumfont}{\LARGE}
 	\renewcommand*{\chaptitlefont}{\LARGE\itshape}
@@ -156,8 +143,8 @@
 
 \setlength{\prechapterprecisshift}{0pt}
 \newlength{\postchapterprecisshift}
-\setlength{\postchapterprecisshift}{22pt plus 7pt minus 4pt}
-\renewcommand{\prechapterprecis}{\vspace*{\prechapterprecisshift}\hfill\begin{minipage}[t]{\smallwidth}\precisfont}
+\setlength{\postchapterprecisshift}{19pt plus 5.75pt minus 3.5pt}
+\renewcommand{\prechapterprecis}{\vspace*{\prechapterprecisshift}\hfill\begin{minipage}[t]{\textwidth}\precisfont}
 \renewcommand{\postchapterprecis}{\end{minipage}\vspace*{\postchapterprecisshift}\noindent{}}
 \renewcommand*{\precisfont}{\small\raggedleft}
 
@@ -168,18 +155,18 @@
 %%  Head styles:  %%
 
 \renewcommand{\thesection}{\arabic{section}}
-\newcommand{\secheadfmt}[1]{\noindent\hfill\parbox[t]{\smallwidth}{\centering#1}\hfill}
+\newcommand{\secheadfmt}[1]{\noindent\hfill\parbox[t]{\textwidth}{\centering#1}\hfill}
 \sethangfrom{\noindent #1}
 \makeheadstyles{classical}{
 	\nobookblankpage
-	\renewcommand*{\beforebookskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][\topheight][c]{\smallwidth}\vfill\vfill}
+	\renewcommand*{\beforebookskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][\topheight][c]{\textwidth}\vfill\vfill}
 	\renewcommand*{\afterbookskip}{\vfill\end{minipage}\end{titlingpage*}}
 	\renewcommand{\printbookname}{}
 	\renewcommand{\booknamenum}{}
 	\renewcommand{\printbooknum}{}
 	\renewcommand{\booktitlefont}{\centering\Huge}
 	\nopartblankpage
-	\renewcommand*{\beforepartskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][\topheight][c]{\smallwidth}\vfill\vfill}
+	\renewcommand*{\beforepartskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][\topheight][c]{\textwidth}\vfill\vfill}
 	\renewcommand*{\afterpartskip}{\vfill\end{minipage}\end{titlingpage*}}
 	\renewcommand{\printpartname}{}
 	\renewcommand{\partnamenum}{}
@@ -187,8 +174,8 @@
 	\renewcommand{\partnumfont}{\centering\Large\bfseries}
 	\renewcommand{\parttitlefont}{\centering\LARGE\itshape}
 	\chapterstyle{IMextra}
-	\setbeforesecskip{-22pt plus 4pt minus 7pt}
-	\setaftersecskip{22pt plus 7pt minus 4pt}
+	\setbeforesecskip{-19pt plus 3.5pt minus 5.75pt}
+	\setaftersecskip{19pt plus 5.75pt minus 3.5pt}
 	\setsechook{\setsecnumformat{{\normalfont\upshape\bfseries\thesection}\par}}
 	\setsecheadstyle{\normalfont\itshape\secheadfmt}
 }
@@ -196,33 +183,31 @@
 %%  Small pages:  %%
 
 \newenvironment{smallpage}[1]{
-	\clearpage\null\vfill
-	\begin{center}\begin{minipage}[t][\smallheight][t]{\smallwidth}
-		\parindent=0pt\thispagestyle{empty}
-		\large\parbox[m][\topheight][t]{\smallwidth}{
-			\centering\LARGE\begin{vplace}[2]#1\end{vplace}\rule[.35em]{\smallwidth}{1pt}
-		}
-		\par\vspace{0pt plus 7pt minus 3.5pt}
-}{\end{minipage}\end{center}}
+	\clearpage\null\parindent=0pt\thispagestyle{empty}
+	\large\parbox[m][\topheight][t]{\textwidth}{
+		\centering\LARGE\begin{vplace}[2]#1\end{vplace}\rule[.35em]{\textwidth}{1pt}
+	}
+	\par\vspace{0pt plus 5.75pt minus 3pt}
+}{}
 
 %%  Contents formatting:  %%
 
-\setpnumwidth{32pt}
-\setrmarg{32pt}
+\setpnumwidth{27pt}
+\setrmarg{27pt}
 \renewcommand{\aftertoctitle}{\thispagestyle{empty}}
-\setlength{\cftbeforepartskip}{17pt}
+\setlength{\cftbeforepartskip}{14pt}
 \setlength{\cftpartnumwidth}{0pt}
 \renewcommand{\cftpartfont}{\Large\bfseries}
 \renewcommand{\partnumberline}[1]{}
 \renewcommand{\cftpartdotsep}{\cftnodots}
 \renewcommand*{\cftpartformatpnum}[1]{\hfill}
-\setlength{\cftbeforechapterskip}{6pt}
+\setlength{\cftbeforechapterskip}{7pt}
 \setlength{\cftchapterindent}{0pt}
-\setlength{\cftchapternumwidth}{35pt}
+\setlength{\cftchapternumwidth}{29pt}
 \renewcommand{\cftchapterfont}{\large}
 \renewcommand{\cftchapteraftersnum}{.}
-\renewcommand{\cftchapterdotsep}{2.75}
-\renewcommand{\cftchapterleader}{\hspace{3.64286pt}\cftdotfill{\cftchapterdotsep}}
+\renewcommand{\cftchapterdotsep}{2.25}
+\renewcommand{\cftchapterleader}{\hspace{3pt}\cftdotfill{\cftchapterdotsep}}
 \renewcommand{\cftchapterpagefont}{\itshape}
 \setcounter{tocdepth}{0}
 
@@ -233,7 +218,7 @@
 \setlength{\footmarksep}{-1.7em}
 \setlength{\footparindent}{1.7em}
 \setlength{\footnotesep}{\onelineskip}
-\setfootins{28pt plus 17pt minus 12pt}{22pt}
+\setfootins{24pt plus 14pt minus 9pt}{19pt}
 \feetbelowfloat
 \renewcommand{\@makefntext}[1]{\makefootmark #1}
 \renewcommand{\foottextfont}{\scriptsize}
@@ -242,16 +227,14 @@
 
 \RequirePackage{lettrine}
 \setcounter{DefaultLines}{2}
-\setlength{\DefaultFindent}{1pt}
-\setlength{\DefaultNindent}{3pt}
+\setlength{\DefaultFindent}{0pt}
+\setlength{\DefaultNindent}{2.25pt}
 \LettrineRealHeighttrue
 \renewcommand*{\DefaultLoversize}{.25}
-\renewcommand*{\DefaultLhang}{.6}
-\renewcommand{\LettrineFontHook}{\initials}
 
 %%  Breaks:  %%
 
-\setlength{\pfbreakskip}{45pt}
+\setlength{\pfbreakskip}{37pt}
 \renewcommand*{\pfbreakdisplay}{\bigskip·\quad ·\quad ·\quad ·\quad ·\bigskip}
 
 %%  The title:  %%
@@ -259,31 +242,30 @@
 	\pagestyle{empty}
 	\begin{smallpage}
 		{{\large \seriesinfo}
-		\par\bigskip
-		\par{\Huge \fellpattern{a} \titleinfo{} \fellpattern{c}}}
+		\par\bigskip{\Huge \textasciitilde{} \titleinfo{} \textasciitilde}}
 		\par\descriptioninfo
 	\end{smallpage}
 	\clearpage\null\cleartorecto
 	\begin{center}
 		\parindent0pt
-		\fbox{\parbox[c][\dimexpr \smallheight-\fboxrule-\fboxrule-\fboxsep-\fboxsep][t]{\dimexpr \smallwidth-\fboxrule-\fboxrule-\fboxsep-\fboxsep}{
+		\fbox{\parbox[c][\dimexpr \textheight-\fboxrule-\fboxrule-\fboxsep-\fboxsep][t]{\dimexpr \textwidth-\fboxrule-\fboxrule-\fboxsep-\fboxsep}{
 			\centering
-			\rule[.35em]{\dimexpr (\smallwidth * 3) / 5}{1pt}
-			\par\vspace{5pt}
+			\rule[.35em]{\dimexpr (\textwidth * 3) / 5}{1pt}
+			\par\vspace{4.2pt}
 			\par{\HUGE \caps{\MakeUppercase{\titleinfo}}}
-			\rule[.35em]{\dimexpr (\smallwidth * 3) / 5}{1pt}
-			\par\vspace{20.75pt}
+			\rule[.35em]{\dimexpr (\textwidth * 3) / 5}{1pt}
+			\par\vspace{17pt}
 			\par\textsc{\large being a story of}
-			\par\vspace{10.2pt}
+			\par\vspace{8.4pt}
 			\par{\LARGE\itshape \seriesinfo}
-			\par\vspace{14.5pt}
-			\par\textsc{\Large as recorded by}
-			\par\vspace{8.75pt}
-			\par{\huge \authorinfo}
-			\par\vspace{.45em}  %  Matches the spacing at the top of a \rule
-			\par{\huge\fellpattern{FQOH}}
 			\par\vfill
-			\par{\Large \fellflower{K} \publisherinfo{} \fellflower{J}}
+			\par\textsc{\Large as recorded by}
+			\par\vspace{7.1pt}
+			\par{\huge \authorinfo}
+			\par\vfill
+			\par\vfill
+			\par\vfill
+			\par{\Large – \publisherinfo{} –}
 		}}
 	\end{center}
 	\clearpage\null
@@ -293,27 +275,22 @@
 
 \newcommand{\makecopyright}{
 	\vfill
-	\begin{center}
-		\begin{minipage}[t][\smallheight][t]{\smallwidth}
-			\parindent0pt\tiny
-			\detailsinfo
-			\par\bigskip
-			\par\copyrightinfo
-			\par\medskip
-			\par This draft compiled \today{} at \printtime.
-			\par\editioninfo{} Edition, \draftinfo{}.
-			\par\bigskip
-			\par Book design by the KIBI Gô.
-			\par\medskip
-			\par This work is formatted via \XeLaTeX{}.
-			Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read.
-			More information about this font and its design can be found on its website, \url{https://software.sil.org/charis/}.
-			\par\medskip
-			\par Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.
-			\par\bigskip
-			\par\vfill
-		\end{minipage}
-	\end{center}
+	{
+		\parindent0pt\tiny
+		\detailsinfo
+		\par\bigskip
+		\par\copyrightinfo
+		\par\medskip
+		\par This draft compiled \today{} at \printtime.
+		\par\editioninfo{} Edition, \draftinfo{}.
+		\par\bigskip
+		\par Book design by the KIBI Gô.
+		\par\medskip
+		\par This work is formatted via \XeLaTeX{}.
+		Body text has been set in 14pt Palatino.
+		\par\bigskip
+		\par\vfill
+	}
 }
 
 %%  Option handling:  %%
@@ -332,7 +309,7 @@
 \headstyles{classical}
 \chapterstyle{verbose7c}
 \newcommand{\mainchapterstyle}{verbose7c}
-\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tiny \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read. More information about this font and its design can be found on its website, \url{https://software.sil.com/charis/}.\nolinebreak\qquad Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
+\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\textwidth}{\tiny \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 14pt Palatino.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
 \tolerance=9999
 
 %%  Matter handling:  %%
