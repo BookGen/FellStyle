@@ -34,8 +34,8 @@
 
 %%  Page geometry:  %%
 
-\settypeblocksize{608.4pt}{490pt}{*} % This gives 28 lines per page with Junicode, which is my preferred text height
-\setlrmargins{54pt}{*}{*} % This gives us at least .75in on the spine, always.
+\settypeblocksize{608.4pt}{370.25pt}{*} % This gives 28 lines per page with Junicode, which is my preferred text height; the page width is set to match \smallwidth (see below) for shorter, more readable line widths
+\setlrmargins{*}{*}{1} % Equal horizontal margins
 \setulmargins{85pt}{*}{*} % This creates a top:bottom ratio of almost exactly 4:7, which looks very nice
 \setheadfoot{\baselineskip}{34pt}
 \setheaderspaces{*}{17pt}{*}
@@ -115,7 +115,7 @@
 	\renewcommand{\printchaptertitle}[1]{
 		\begin{center}
 			\parbox[m][\topheight][b]{\smallwidth}{
-				\noindent\llap{\makebox[60pt][l]{\chapnumfont \thechapter}}{ % The box size of the chapter number was chosen to align with the left edge of the typeblock
+				\noindent\llap{\makebox[45pt][l]{\chapnumfont \thechapter}}{
 					\chaptitlefont\enquote*{##1}
 				}\par\vspace{22pt}
 			}
@@ -142,7 +142,7 @@
 					\par{\large \fellpattern{a} \caps{\MakeUppercase{\titleinfo}} \fellpattern{c}}
 					\par\rule[.35em]{\smallwidth}{1pt}
 				\end{center}
-				\vfill\noindent\llap{\makebox[60pt][l]{\chapnumfont \thechapter}}{ % The box size of the chapter number was chosen to align with the left edge of the typeblock
+				\vfill\noindent\llap{\makebox[45pt][l]{\chapnumfont \thechapter}}{
 					\chaptitlefont\enquote*{##1}
 				}\par\vspace{22pt}
 			}
@@ -256,7 +256,7 @@
 	\clearpage\null\cleartorecto
 	\begin{center}
 		\parindent0pt
-		\fbox{\parbox[c][384.5pt][t]{263pt}{
+		\fbox{\parbox[c][\dimexpr \smallheight-\fboxrule-\fboxrule-\fboxsep-\fboxsep][t]{\dimexpr \smallwidth-\fboxrule-\fboxrule-\fboxsep-\fboxsep}{
 			\centering
 			\rule[.35em]{192pt}{1pt}
 			\par\vspace{5pt}
@@ -270,7 +270,7 @@
 			\par\textsc{\Large as recorded by}
 			\par\vspace{8.75pt}
 			\par{\huge \authorinfo}
-			\par\vfill
+			\par\vspace{.45em}  %  Matches the spacing at the top of a \rule
 			\par{\huge\fellpattern{FQOH}}
 			\par\vfill
 			\par{\Large \fellflower{K} \publisherinfo{} \fellflower{J}}
@@ -323,7 +323,7 @@
 \chapterstyle{verbose7c}
 \newcommand{\mainchapterstyle}{verbose7c}
 \newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tiny \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read. More information about this font and its design can be found on its website, \url{https://software.sil.com/charis/}.\nolinebreak\qquad Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
-\tolerance=5000
+\tolerance=9999
 
 %%  Matter handling:  %%
 

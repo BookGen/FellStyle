@@ -294,26 +294,27 @@
 %
 %  The above *have not* been recalculated for the various IM FELL fonts but are fairly standard and should also apply.
 
-	\fbox{\parbox[c][384.5pt][t]{263pt}{
-		\centering
-		\rule[.35em]{192pt}{1pt}
-		\par\vspace{3.6pt}  %  Compensates for descent being larger than ascent
-		\par{\IMHUGE \caps{\MakeUppercase{\titleinfo}}}
-		\par\rule[.35em]{192pt}{1pt}
-		\par\vspace{14.6pt}  %  16pt - 1.4pt
-		\par\textsc{\IMlarge being a story of}
-		\par\vspace{7.2pt}  %  12pt - 2.8pt - 2pt
-		\par{\IMLARGEswash \seriesinfo}
-		\par\vspace{10.3pt}  %  16pt - 4pt - 1.7pt
-		\par\textsc{\IMLarge as recorded by}
-		\par\vspace{6.1pt}  %  12pt - 3.4pt - 2.5pt
-		\par{\IMhuge \authorinfo}
-		\par\vspace{11pt}  %  16pt - 5pt
-		\par\vspace{.45em}  %  Matches the spacing at the top of a \rule
-		\par{\huge\fellpattern{FQOH}}
-		\par\vfill
-		\par{\IMLarge \fellflower{K} \publisherinfo{} \fellflower{J}}
-	}}
+		\fbox{\parbox[c][\dimexpr \smallheight-\fboxrule-\fboxrule-\fboxsep-\fboxsep][t]{\dimexpr \smallwidth-\fboxrule-\fboxrule-\fboxsep-\fboxsep}{
+			\centering
+			\rule[.35em]{192pt}{1pt}
+			\par\vspace{3.6pt}  %  Compensates for descent being larger than ascent
+			\par{\IMHUGE \caps{\MakeUppercase{\titleinfo}}}
+			\par\rule[.35em]{192pt}{1pt}
+			\par\vspace{14.6pt}  %  16pt - 1.4pt
+			\par\textsc{\IMlarge being a story of}
+			\par\vspace{7.2pt}  %  12pt - 2.8pt - 2pt
+			\par{\IMLARGEswash \seriesinfo}
+			\par\vspace{10.3pt}  %  16pt - 4pt - 1.7pt
+			\par\textsc{\IMLarge as recorded by}
+			\par\vspace{6.1pt}  %  12pt - 3.4pt - 2.5pt
+			\par{\IMhuge \authorinfo}
+			\par\vspace{11pt}  %  16pt - 5pt
+			\par\vspace{.45em}  %  Matches the spacing at the top of a \rule
+			\par{\huge\fellpattern{FQOH}}
+			\par\vfill
+			\par{\IMLarge \fellflower{K} \publisherinfo{} \fellflower{J}}
+		}}
+	\end{center}
 	\clearpage\null
 }
 
