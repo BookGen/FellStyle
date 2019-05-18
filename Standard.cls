@@ -12,7 +12,6 @@
 %%  Initial packages:  %%
 
 \RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor}
-\RequirePackage{calc, metalogo, amsmath, graphicx}
 
 %%  Font and language setup:  %%
 
@@ -47,8 +46,10 @@
 \newcommand{\subs}[1]{\raisebox{-.35ex}{\scriptbig #1}}
 \newcommand{\supers}[1]{\raisebox{.7ex}{\scriptbig #1}}
 
+\RequirePackage{metalogo}
+
 \RequirePackage{soul}
-\sodef{\emph}{\itshape}{.1em}{.5em plus .15em minus .1em}{.4em plus .3em minus .15em}
+\sodef{\emph}{\itshape}{.08em}{.5em plus .15em minus .1em}{.4em plus .3em minus .15em}
 
 \RequirePackage{newunicodechar}
 \newunicodechar{ʼ}{’} % Not in IM Fell; identical in Junicode
@@ -59,20 +60,20 @@
 
 %%  Page geometry:  %%
 
-\settypeblocksize{432.5pt}{311pt}{*}  %  This height gives 30 lines per page, which is doable. (I actually prefer 28, but this is untenable with a 6:9 page without enormous margins.)
-\setlrmargins{54pt}{*}{*}  %  This gives us at least .75in on the edge, always.
-\setulmargins{60pt}{*}{*}  %  This creates a top:bottom ratio of almost exactly 4:7, which looks very nice
+\settypeblocksize{403.5pt}{311pt}{*} % This gives 28 lines per page with Junicode, which is my preferred text height
+\setlrmargins{54pt}{*}{*} % This gives us at least .75in on the spine, always
+\setulmargins{70pt}{*}{*}  %  This creates a top:bottom ratio of almost exactly 4:7, which looks very nice
 \setheadfoot{\baselineskip}{24pt}
 \setheaderspaces{*}{12pt}{*}
-% \setstocksize{11in}{8.5in}  %  This sets the page up on letter stock
-% \setpagecc{\paperheight}{\paperwidth}{*}  %  This centers the page on the stock
+% \setstocksize{11in}{8.5in} % This sets the page up on letter stock
+% \setpagecc{\paperheight}{\paperwidth}{*}  %  This centres the page on the stock
 \checkandfixthelayout[nearest]
 \newlength{\topheight}
-\setlength{\topheight}{121.5pt}  %  This is the amount of top padding needed to make the resultant text box square.
+\setlength{\topheight}{92.5pt} % This is the amount of top padding needed to make the resultant text box square
 \newlength{\smallheight}
 \newlength{\smallwidth}
-\setlength{\smallheight}{387.5pt}  %  This height creates a faux-centered (actually about a quarter-inch closer to the top) small page.
-\setlength{\smallwidth}{274pt}  %  This mimics the 1/sqrt(2) ratio of the page
+\setlength{\smallheight}{331.5pt} % This height creates a faux-centered (actually about a quarter-inch closer to the top) small page
+\setlength{\smallwidth}{234pt} % This mimics the 1/sqrt(2) ratio of the page
 
 %%  Empty last page:  %%
 
@@ -112,43 +113,72 @@
 %%  Chapter formatting:  %%
 
 \makechapterstyle{IMextra}{
-\renewcommand*{\chapterheadstart}{}
-\renewcommand*{\printchaptername}{}
-\renewcommand*{\chapternamenum}{}
-\renewcommand*{\printchapternum}{}
-\renewcommand*{\afterchapternum}{}
-\renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\centering\parbox[m][\topheight][t]{\smallwidth}{\centering\begin{vplace}[2]\chaptitlefont ##1\end{vplace}}\par}
-\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 6pt minus 2pt}}
-\renewcommand*{\chapnamefont}{}
-\renewcommand*{\chapnumfont}{}
-\renewcommand*{\chaptitlefont}{\IMLARGE}
+	\renewcommand*{\chapterheadstart}{}
+	\renewcommand*{\printchaptername}{}
+	\renewcommand*{\chapternamenum}{}
+	\renewcommand*{\printchapternum}{}
+	\renewcommand*{\afterchapternum}{}
+	\renewcommand*{\printchapternonum}{}
+	\renewcommand{\printchaptertitle}[1]{
+		\begin{center}
+			\parbox[m][\topheight][t]{\smallwidth}{
+				\centering\begin{vplace}[2]\chaptitlefont ##1\end{vplace}
+			}
+		\end{center}
+	}
+	\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 6pt minus 2pt}}
+	\renewcommand*{\chapnamefont}{}
+	\renewcommand*{\chapnumfont}{}
+	\renewcommand*{\chaptitlefont}{\IMLARGE}
 }
 \makechapterstyle{7c}{
-\renewcommand*{\chapterheadstart}{}
-\renewcommand*{\printchaptername}{}
-\renewcommand*{\chapternamenum}{}
-\renewcommand*{\printchapternum}{}
-\renewcommand*{\afterchapternum}{}
-\renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{\smallwidth}{\noindent\llap{\makebox[32pt][l]{\chapnumfont \thechapter}}{\chaptitlefont\enquote*{##1}}\par\vspace{16pt}}\end{center}}  %  The box size of the chapter number was chosen to align the left edge with the left edge of the typeblock. Note 30pt is roughly the maximum the width of 3 \IMLARGE numerals (numeral size varies)---thus, there is 2pt padding for a large 3-digit number.
-\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 6pt minus 2pt}}
-\renewcommand*{\chapnamefont}{}
-\renewcommand*{\chapnumfont}{\IMLARGE}
-\renewcommand*{\chaptitlefont}{\IMLARGEswash}
+	\renewcommand*{\chapterheadstart}{}
+	\renewcommand*{\printchaptername}{}
+	\renewcommand*{\chapternamenum}{}
+	\renewcommand*{\printchapternum}{}
+	\renewcommand*{\afterchapternum}{}
+	\renewcommand*{\printchapternonum}{}
+	\renewcommand{\printchaptertitle}[1]{
+		\begin{center}
+			\parbox[m][\topheight][b]{\smallwidth}{
+				\noindent\llap{\makebox[38.5pt][l]{\chapnumfont \thechapter}}{ % The box size of the chapter number was chosen to align with the left edge of the typeblock
+					\chaptitlefont\enquote*{##1}
+				}\par\vspace{16pt}
+			}
+		\end{center}
+	}
+	\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 6pt minus 2pt}}
+	\renewcommand*{\chapnamefont}{}
+	\renewcommand*{\chapnumfont}{\IMLARGE}
+	\renewcommand*{\chaptitlefont}{\IMLARGEswash}
 }
 \makechapterstyle{verbose7c}{
-\renewcommand*{\chapterheadstart}{}
-\renewcommand*{\printchaptername}{}
-\renewcommand*{\chapternamenum}{}
-\renewcommand*{\printchapternum}{}
-\renewcommand*{\afterchapternum}{}
-\renewcommand*{\printchapternonum}{}
-\renewcommand{\printchaptertitle}[1]{\begin{center}\parbox[m][\topheight][b]{\smallwidth}{{\centering {\IMlarge \seriesinfo}\par\medskip {\IMLARGE \fellpattern{a} \titleinfo{} \fellpattern{c}}\par\rule[.35em]{\smallwidth}{1pt}\par}\vfill\noindent\llap{\makebox[32pt][l]{\chapnumfont \thechapter}}{\chaptitlefont\enquote*{##1}}\par\vspace{16pt}}\end{center}}  %  The box size of the chapter number was chosen to align the left edge with the left edge of the typeblock. Note 30pt is roughly the maximum the width of 3 \IMLARGE numerals (numeral size varies)---thus, there is 2pt padding for a large 3-digit number.
-\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 6pt minus 2pt}}
-\renewcommand*{\chapnamefont}{}
-\renewcommand*{\chapnumfont}{\IMLARGE}
-\renewcommand*{\chaptitlefont}{\IMLARGEswash}
+	\renewcommand*{\chapterheadstart}{}
+	\renewcommand*{\printchaptername}{}
+	\renewcommand*{\chapternamenum}{}
+	\renewcommand*{\printchapternum}{}
+	\renewcommand*{\afterchapternum}{}
+	\renewcommand*{\printchapternonum}{}
+	\renewcommand{\printchaptertitle}[1]{
+		\begin{center}
+		\parbox[m][\topheight][b]{\smallwidth}{
+			\begin{center}
+				{\IMlarge \seriesinfo}
+				\par\medskip
+				\par{\IMLARGE \fellpattern{a} \caps{\MakeUppercase{\titleinfo}} \fellpattern{c}}
+				\par\rule[.35em]{\smallwidth}{1pt}
+			\end{center}
+			\vfill\noindent\llap{\makebox[32pt][l]{\chapnumfont \thechapter}}{ % The box size of the chapter number was chosen to align with the left edge of the typeblock
+				\chaptitlefont\enquote*{##1}
+			}
+			\par\vspace{16pt}
+		}
+		\end{center}
+	}
+	\renewcommand*{\afterchaptertitle}{\vspace{0pt plus 6pt minus 2pt}}
+	\renewcommand*{\chapnamefont}{}
+	\renewcommand*{\chapnumfont}{\IMLARGE}
+	\renewcommand*{\chaptitlefont}{\IMLARGEswash}
 }
 
 \setlength{\prechapterprecisshift}{0pt}
@@ -168,26 +198,26 @@
 \newcommand{\secheadfmt}[1]{\noindent\hfill\parbox[t]{\smallwidth}{\centering#1}\hfill}
 \sethangfrom{\noindent #1}
 \makeheadstyles{classical}{
-\nobookblankpage
-\renewcommand*{\beforebookskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][96pt][c]{\smallwidth}\vfill\vfill}
-\renewcommand*{\afterbookskip}{\vfill\end{minipage}\end{titlingpage*}}
-\renewcommand{\printbookname}{}
-\renewcommand{\booknamenum}{}
-\renewcommand{\printbooknum}{}
-\renewcommand{\booktitlefont}{\centering\IMHuge}
-\nopartblankpage
-\renewcommand*{\beforepartskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][96pt][c]{\smallwidth}\vfill\vfill}
-\renewcommand*{\afterpartskip}{\vfill\end{minipage}\end{titlingpage*}}
-\renewcommand{\printpartname}{}
-\renewcommand{\partnamenum}{}
-\renewcommand{\printpartnum}{{\partnumfont ·\enspace\thepart\enspace ·}}
-\renewcommand{\partnumfont}{\centering\IMLarge}
-\renewcommand{\parttitlefont}{\centering\IMLARGEswash}
-\chapterstyle{IMextra}
-\setbeforesecskip{-16pt plus 3pt minus 5pt}
-\setaftersecskip{16pt plus 5pt minus 3pt}
-\setsechook{\setsecnumformat{{\normalfont\upshape\bfseries\thesection}\par}}
-\setsecheadstyle{\normalfont\itshape\secheadfmt}
+	\nobookblankpage
+	\renewcommand*{\beforebookskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][96pt][c]{\smallwidth}\vfill\vfill}
+	\renewcommand*{\afterbookskip}{\vfill\end{minipage}\end{titlingpage*}}
+	\renewcommand{\printbookname}{}
+	\renewcommand{\booknamenum}{}
+	\renewcommand{\printbooknum}{}
+	\renewcommand{\booktitlefont}{\centering\IMHuge}
+	\nopartblankpage
+	\renewcommand*{\beforepartskip}{\begin{titlingpage*}\parindent0pt\centering\begin{minipage}[m][96pt][c]{\smallwidth}\vfill\vfill}
+	\renewcommand*{\afterpartskip}{\vfill\end{minipage}\end{titlingpage*}}
+	\renewcommand{\printpartname}{}
+	\renewcommand{\partnamenum}{}
+	\renewcommand{\printpartnum}{{\partnumfont ·\enspace\thepart\enspace ·}}
+	\renewcommand{\partnumfont}{\centering\IMLarge}
+	\renewcommand{\parttitlefont}{\centering\IMLARGEswash}
+	\chapterstyle{IMextra}
+	\setbeforesecskip{-16pt plus 3pt minus 5pt}
+	\setaftersecskip{16pt plus 5pt minus 3pt}
+	\setsechook{\setsecnumformat{{\normalfont\upshape\bfseries\thesection}\par}}
+	\setsecheadstyle{\normalfont\itshape\secheadfmt}
 }
 
 %%  Small pages:  %%
@@ -244,13 +274,15 @@
 \renewcommand*{\pfbreakdisplay}{\bigskip·\quad ·\quad ·\quad ·\quad ·\bigskip}
 
 %%  The title:  %%
-\renewcommand{\maketitle}{\pagestyle{empty}\begin{smallpage}{{\IMlarge \seriesinfo}\par\bigskip{\IMHuge \fellpattern{a} \titleinfo{} \fellpattern{c}}}
-
-\descriptioninfo
-
-\end{smallpage}
-\clearpage\null\cleartorecto\centering
-\parindent0pt
+\renewcommand{\maketitle}{
+	\pagestyle{empty}
+	\begin{smallpage}
+		{{\large \seriesinfo}\par\bigskip{\Huge \fellpattern{a} \titleinfo{} \fellpattern{c}}}
+		\descriptioninfo
+	\end{smallpage}
+	\clearpage\null\cleartorecto
+	\begin{center}
+		\parindent0pt
 
 %  Note the following Junicode font metrics:
 %
@@ -262,87 +294,57 @@
 %
 %  The above *have not* been recalculated for the various IM FELL fonts but are fairly standard and should also apply.
 
-\fbox{\parbox[c][384.5pt][t]{263pt}{
-\centering
-
-\rule[.35em]{192pt}{1pt}
-
-\vspace{3.6pt}  %  Compensates for descent being larger than ascent
-
-{\IMHUGE \MakeUppercase{\titleinfo}}
-
-\rule[.35em]{192pt}{1pt}
-
-\vspace{14.6pt}  %  16pt - 1.4pt
-
-\textsc{\IMlarge being a story of}
-
-\vspace{7.2pt}  %  12pt - 2.8pt - 2pt
-
-{\IMLARGEswash \seriesinfo}
-
-\vspace{10.3pt}  %  16pt - 4pt - 1.7pt
-
-\textsc{\IMLarge as recorded by}
-
-\vspace{6.1pt}  %  12pt - 3.4pt - 2.5pt
-
-{\IMhuge \authorinfo}
-
-\vspace{11pt}  %  16pt - 5pt
-
-\vspace{.45em}  %  Matches the spacing at the top of a \rule
-
-{\huge\fellpattern{FQOH}}
-
-\vfill
-
-{\IMLarge \fellflower{K} \publisherinfo{} \fellflower{J}}
-
-}}
-
-\clearpage\null}
+	\fbox{\parbox[c][384.5pt][t]{263pt}{
+		\centering
+		\rule[.35em]{192pt}{1pt}
+		\par\vspace{3.6pt}  %  Compensates for descent being larger than ascent
+		\par{\IMHUGE \caps{\MakeUppercase{\titleinfo}}}
+		\par\rule[.35em]{192pt}{1pt}
+		\par\vspace{14.6pt}  %  16pt - 1.4pt
+		\par\textsc{\IMlarge being a story of}
+		\par\vspace{7.2pt}  %  12pt - 2.8pt - 2pt
+		\par{\IMLARGEswash \seriesinfo}
+		\par\vspace{10.3pt}  %  16pt - 4pt - 1.7pt
+		\par\textsc{\IMLarge as recorded by}
+		\par\vspace{6.1pt}  %  12pt - 3.4pt - 2.5pt
+		\par{\IMhuge \authorinfo}
+		\par\vspace{11pt}  %  16pt - 5pt
+		\par\vspace{.45em}  %  Matches the spacing at the top of a \rule
+		\par{\huge\fellpattern{FQOH}}
+		\par\vfill
+		\par{\IMLarge \fellflower{K} \publisherinfo{} \fellflower{J}}
+	}}
+	\clearpage\null
+}
 
 %%  The copyright:  %%
 
-\newcommand{\makecopyright}{\vfill
-
-\begin{minipage}[t][\smallheight][t]{\smallwidth}
-\parindent0pt
-\tinybig
-
-\detailsinfo
-
-\bigskip
-
-\copyrightinfo
-
-\medskip
-
-This draft compiled \today{} at \printtime.
-
-\editioninfo{} Edition, \draftinfo{}.
-
-\bigskip
-
-Book design by the KIBI Gô.
-
-\medskip
-
-This work is formatted via \XeLaTeX{}.
-Body text is set in 12pt Junicode, a font inspired by the early eighteenth-century Oxford University Press.
-More information about this font and its origins can be found on its website, \url{https://junicode.sourceforge.net/}.
-
-\medskip
-
-Headings are set in the closely-related Fell Types in various cuts and sizes—as are certain spans of text, for effect.
-The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.
-
-\bigskip
-
-\vfill
-
-\end{minipage}}
+\newcommand{\makecopyright}{
+	\vfill
+	\begin{center}
+		\begin{minipage}[t][\smallheight][t]{\smallwidth}
+			\parindent0pt
+			\tinybig
+			\detailsinfo
+			\par\bigskip
+			\par\copyrightinfo
+			\par\medskip
+			\par This draft compiled \today{} at \printtime.
+			\par\editioninfo{} Edition, \draftinfo{}.
+			\par\bigskip
+			\par Book design by the KIBI Gô.
+			\par\medskip
+			\par This work is formatted via \XeLaTeX{}.
+			Body text is set in 12pt Junicode, a font inspired by the early eighteenth-century Oxford University Press.
+			More information about this font and its origins can be found on its website, \url{https://junicode.sourceforge.net/}.
+			\par\medskip
+			\par Headings are set in the closely-related Fell Types in various cuts and sizes—as are certain spans of text, for effect.
+			The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.
+			\par\bigskip
+			\par\vfill
+		\end{minipage}
+	\end{center}
+}
 
 %%  Option handling:  %%
 
