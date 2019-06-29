@@ -1,0 +1,167 @@
+@counter-style FellStyle-Order {
+	System: Extends Upper-Roman;
+	Suffix: " – ";
+}
+@counter-style FellStyle-Footnote {
+	System: Extends Decimal;
+	Prefix: "[";
+	Suffix: "] ";
+}
+*:Root{
+	Font: Normal Large / 1.15 "Junicode", Serif;
+	Font-Variant-Numeric: Oldstyle-Nums;
+	Line-Height: 1.2;
+}
+html {
+	Margin: 0;
+	Padding: 0;
+	Font-Size: Large;
+}
+body {
+	Position: Relative;
+	Margin: Auto;
+	Padding: 3REM;
+	Font-Size: .85REM;
+	Max-Width: 30REM;
+	Hyphens: Auto;
+}
+@media screen {
+	html {
+		Color: #FAF8F7;
+		Background: #1F1A14;
+	}
+	body{
+		Color: #1F1A14;
+		Background: #FAF8F7;
+	}
+}
+body[data-title-info]::BEFORE {
+	Display: Block;
+	Position: Absolute;
+	Top: 1.9REM;
+	Left: 3REM;
+	Right: 3REM;
+	Height: 1.1REM;
+	Overflow: Hidden;
+	Font-Size: 1REM;
+	Line-Height: 1.1;
+	Letter-Spacing: .16EM;
+	White-Space: NoWrap;
+	Text-Overflow: Ellipsis;
+	Content: Attr(data-title-info);
+}
+body[data-details-info]::AFTER {
+	Display: Block;
+	Margin: .5REM 0 0;
+	Font-Size: Small;
+	Text-Align: Justify;
+	Content: Attr(data-details-info);
+}
+article { Position: Relative }
+footer {
+	Margin: 2REM 0 0;
+	Border-Top: Thin Solid;
+	Padding: 1REM 0 0;
+	Font-Size: Small;
+}
+article>section {
+	Position: Relative;
+	Margin: 0 -3REM;
+	Padding: 1REM 3REM;
+	Counter-Reset: Para;
+}
+section.footnotes hr {
+	Margin: 1REM 0 3REM;
+	Border-Top: Thin Solid;
+}
+section.footnotes hr::AFTER { Content: None }
+blockquote {
+	Margin: 1EM 0;
+	Padding: 0 1EM;
+	Font-Style: Italic;
+}
+h1 {
+	Margin: 0 0 1REM;
+	Border-Bottom: Thin Solid;
+	Padding: 0 0 2.5REM;
+	Font-Size: 3REM;
+	Font-Family: "Three Lines Pica", "Junicode", Serif;
+	Font-Variant-Caps: Small-Caps;
+	Line-Height: 1.1;
+}
+h1::BEFORE { Content: Counter(BookGen-Chapter, Upper-Roman) " – " }
+h2 {
+	Margin: 0;
+	Text-Align: Center;
+	Font-Size: 1.5REM;
+	Line-Height: 1.1;
+}
+hr {
+	Display: Block;
+	Margin: .5REM 0;
+	Color: Inherit;
+	Background: Transparent;
+	Border: None;
+	Text-Align: Center;
+}
+hr:Not(.plain)::AFTER { Content: "⁂" }
+hr.plain { Margin: 1.175REM Auto .675REM }
+ol,
+ul { Margin: .5REM 0 0 }
+ol {
+	List-Style: Upper-Roman;
+	List-Style: FellStyle-Order;
+}
+[data--book-gen-type=index] ol { List-Style: None }
+[data--book-gen-type=index] ol ol { List-Style: Decimal-Leading-Zero }
+section.footnotes>ol {
+	Padding: 0;
+	List-Style: Inside Decimal;
+	List-Style: Inside FellStyle-Footnote;
+}
+section.footnotes>ol>li::MARKER {
+	Vertical-Align: Super;
+	Font-Size: .5EM;
+	Line-Height: 0;
+}
+section.footnotes>ol>li>p:First-Child { Display: Contents }
+li,
+p {
+	Margin: .5REM 0 0;
+	Text-Align: Justify;
+}
+section:Not(.footnotes) p::BEFORE {
+	Position: Absolute;
+	Left: 0;
+	Width: 2.5REM;
+	Color: #75706A;
+	Font-Size: Small;
+	Line-Height: 1.15REM;
+	Text-Align: Right;
+	Counter-Increment: Para;
+	Content: '¶ ' Counter(Para, Decimal-Leading-Zero)
+}
+*:Any-Link { Color: #4B2DF7 }
+*:Any-Link:Hover { Color: #302F2B }
+*:Any-Link:Active {
+	Color: Inherit;
+	Font-Weight: Bold;
+}
+*:Any-Link.footnote-ref {
+	Vertical-Align: Super;
+	Font-Size: .5EM;
+	Line-Height: 0;
+	Text-Decoration: None;
+}
+*:Any-Link.footnote-ref::BEFORE { Content: "[" }
+*:Any-Link.footnote-ref::AFTER { Content: "]" }
+*:Any-Link.footnote-ref sup { Vertical-Align: Baseline }
+*:Any-Link.footnote-back { Margin-Left: .5EM }
+em {
+	Font-Style: Inherit;
+	Text-Decoration: Underline;
+}
+strong {
+	Font-Weight: Inherit;
+	Font-Variant-Caps: Small-Caps;
+}
