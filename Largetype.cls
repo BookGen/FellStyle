@@ -83,6 +83,10 @@
 \RequirePackage[style=french,french=guillemets]{csquotes}
 \DeclareQuoteStyle[guillemets]{french}{« }[» ]{ »}{« }[» ]{ »}
 
+%%  Verse formatting:  %%
+
+\setlength{\vleftmargin}{0.5\vgap}
+
 %%  Footnote formatting:  %%
 
 \footmarkstyle{#1.\hfill}

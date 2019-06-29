@@ -53,16 +53,20 @@ body[data-title-info]::BEFORE {
 body[data-details-info]::AFTER {
 	Display: Block;
 	Margin: .5REM 0 0;
-	Font-Size: Small;
-	Text-Align: Justify;
+	Font-Size: .75REM;
+	Line-Height: 1.35;
+	Text-Align: Center;
+	White-Space: Pre-Line;
 	Content: Attr(data-details-info);
 }
 article { Position: Relative }
 footer {
-	Margin: 2REM 0 0;
+	Margin: 0;
 	Border-Top: Thin Solid;
 	Padding: 1REM 0 0;
-	Font-Size: Small;
+	Font-Size: .75REM;
+	Line-Height: 1.35;
+	Text-Align: Center;
 }
 article>section {
 	Position: Relative;
@@ -71,7 +75,7 @@ article>section {
 	Counter-Reset: Para;
 }
 section.footnotes hr {
-	Margin: 1REM 0 3REM;
+	Margin: -1REM 0 1REM;
 	Border-Top: Thin Solid;
 }
 section.footnotes hr::AFTER { Content: None }
@@ -130,23 +134,37 @@ p {
 	Margin: .5REM 0 0;
 	Text-Align: Justify;
 }
+div.line-block p,
+footer p { Text-Align: Inherit }
 section:Not(.footnotes) p::BEFORE {
 	Position: Absolute;
 	Left: 0;
 	Width: 2.5REM;
 	Color: #75706A;
-	Font-Size: Small;
-	Line-Height: 1.15REM;
+	Font-Size: .75REM;
+	Line-Height: 1.35;
 	Text-Align: Right;
 	Counter-Increment: Para;
 	Content: '¶ ' Counter(Para, Decimal-Leading-Zero)
 }
+div.line-block { Margin: 0 1.5REM }
+div.line-block p::BEFORE,
+div[role=note] p::BEFORE,
+div.continuation p::BEFORE {
+	Counter-Increment: None;
+	Content: None;
+}
+div.verse { Font-Style: Italic }
+span.line-item {
+	Display: Block;
+	Padding-Left: 3REM;
+	Text-Indent: -3REM;
+}
+span.line-item>* { Text-Indent: 0 }
+div.alternating.verse>div.line-block>p>span.line-item:Nth-Of-Type(Even) { Padding-Left: 4.5REM }
 *:Any-Link { Color: #4B2DF7 }
 *:Any-Link:Hover { Color: #302F2B }
-*:Any-Link:Active {
-	Color: Inherit;
-	Font-Weight: Bold;
-}
+*:Any-Link:Active { Color: Inherit }
 *:Any-Link.footnote-ref {
 	Vertical-Align: Super;
 	Font-Size: .6EM;
