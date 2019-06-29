@@ -8,7 +8,7 @@
 	Suffix: "] ";
 }
 *:Root{
-	Font: Normal Large / 1.15 "Junicode", Serif;
+	Font: Normal Large / 1.15 Junicode, "Iowan Old Style", "Hoefler Text", "Charis SIL", "EB Garamond", Baskerville, "Times New Roman", Georgia, Times, Serif;
 	Font-Variant-Numeric: Oldstyle-Nums;
 	Line-Height: 1.2;
 }
@@ -85,7 +85,6 @@ h1 {
 	Border-Bottom: Thin Solid;
 	Padding: 0 0 2.5REM;
 	Font-Size: 3REM;
-	Font-Family: "Three Lines Pica", "Junicode", Serif;
 	Font-Variant-Caps: Small-Caps;
 	Line-Height: 1.1;
 }
