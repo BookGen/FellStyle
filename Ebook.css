@@ -161,6 +161,7 @@ span.line-item {
 	Text-Indent: -3REM;
 }
 span.line-item>* { Text-Indent: 0 }
+span.line-item.indented,
 div.alternating.verse>div.line-block>p>span.line-item:Nth-Of-Type(Even) { Padding-Left: 4.5REM }
 *:Any-Link { Color: #4B2DF7 }
 *:Any-Link:Hover { Color: #302F2B }
