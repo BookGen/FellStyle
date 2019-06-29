@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{Largetype}
+\ProvidesClass{style}
 
 %%  Class loading and defaults:  %%
 
@@ -10,6 +10,15 @@
 %%  Initial packages:  %%
 
 \RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+%%  Checking if empty:  %%
+\RequirePackage{ifmtarg}
+\newcommand{\ifexpandsnotmt}[2]{\expandafter\@ifnotmtarg\expandafter{#1}{#2}}
+
+%%  Custom metadata:  %%
+
+\newcommand{\draftinfo}{} % Default to empty
+\newcommand{\detailsinfo}{}
 
 %%  Font and language setup:  %%
 
@@ -151,8 +160,8 @@
 \renewcommand*{\precisfont}{\small\raggedleft}
 
 \copypagestyle{chapter}{plain}
-\makeevenhead{chapter}{}{\scriptsize\copyrightinfo}{}
-\makeoddhead{chapter}{}{\scriptsize\copyrightinfo}{}
+\makeevenhead{chapter}{}{\scriptsize\thecopyright}{}
+\makeoddhead{chapter}{}{\scriptsize\thecopyright}{}
 
 %%  Head styles:  %%
 
@@ -243,9 +252,12 @@
 \renewcommand{\maketitle}{
 	\pagestyle{empty}
 	\begin{smallpage}
-		{{\large \seriesinfo}
-		\par\bigskip{\Huge \textasciitilde{} \titleinfo{} \textasciitilde}}
-		\par\descriptioninfo
+		{ % Throws an error if this isnʼt wrapped—for some reason
+			\ifexpandsnotmt{\seriesinfo}{{\large \seriesinfo}\par}
+			\null\bigskip\par
+			{\Huge \textasciitilde{} \titleinfo{} \textasciitilde{}}\par
+			\ifexpandsnotmt{\descriptioninfo}{\descriptioninfo}
+		}
 	\end{smallpage}
 	\clearpage\null\cleartorecto
 	\begin{center}
@@ -256,10 +268,10 @@
 			\par\vspace{4.2pt}
 			\par{\HUGE \caps{\MakeUppercase{\titleinfo}}}
 			\rule[.35em]{\dimexpr (\textwidth * 3) / 5}{1pt}
-			\par\vspace{17pt}
+			\ifexpandsnotmt{\seriesinfo}{\par\vspace{17pt}
 			\par\textsc{\large being a story of}
 			\par\vspace{8.4pt}
-			\par{\LARGE\itshape \seriesinfo}
+			\par{\LARGE\itshape \seriesinfo}}
 			\par\vfill
 			\par\textsc{\Large as recorded by}
 			\par\vspace{7.1pt}
@@ -267,7 +279,7 @@
 			\par\vfill
 			\par\vfill
 			\par\vfill
-			\par{\Large – \publisherinfo{} –}
+			\ifexpandsnotmt{\publisherinfo}{\par{\Large – \publisherinfo{} –}}
 		}}
 	\end{center}
 	\clearpage\null
@@ -279,12 +291,12 @@
 	\vfill
 	{
 		\parindent0pt\tiny
-		\detailsinfo
+		\ifexpandsnotmt{\detailsinfo}{\detailsinfo
 		\par\bigskip
-		\par\copyrightinfo
+		\par}\thecopyright
 		\par\medskip
 		\par This draft compiled \today{} at \printtime.
-		\par\editioninfo{} Edition, \draftinfo{}.
+		\par\styleinfo{} Edition\ifexpandsnotmt{\draftinfo}{, draft \draftinfo{}}.
 		\par\bigskip
 		\par Book design by the KIBI Gô.
 		\par\medskip
@@ -303,7 +315,6 @@
 
 %%  Defaults:  %%
 
-\RequirePackage{fmtcount}
 \setsecnumdepth{chapter}
 \pagenumbering{arabic}
 \openany
@@ -311,7 +322,7 @@
 \headstyles{classical}
 \chapterstyle{verbose7c}
 \newcommand{\mainchapterstyle}{verbose7c}
-\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\textwidth}{\tiny \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 14pt Palatino.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
+\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\textwidth}{\tiny\ifexpandsnotmt{\detailsinfo}{\leavevmode\detailsinfo\nolinebreak\qquad}\thecopyright{} Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 14pt Palatino.\nolinebreak\qquad This has been the \ordinaltoname{\value{chapter}} chapter of \ifexpandsnotmt{\seriesinfo}{\seriesinfo{} – }\titleinfo{}. Thank you for reading.\lastlinerulefill}}
 \tolerance=9999
 
 %%  Matter handling:  %%

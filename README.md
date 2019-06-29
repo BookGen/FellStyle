@@ -10,6 +10,14 @@ A collection of styles for use with [BookGen](https://github.com/marrus-sh/BookG
 
 PDF styles are designed for use with XeLaTeX ( the BookGen default ).
 
+Requires the following additional TeX packages to be installed on your system :
++ `ifmtarg`
++ `soul`
+
+## Custom Info
+
+`details` can be used to provide extended details about the publication of a work; for example, an extended copyright statement.
+
 ### Fonts ( for PDF )
 
 Both PDF styles require the [IM Fell](https://iginomarini.com/fell/the-revival-fonts/) fonts. ( At time of writing, the IM Fell website is having issues, so hereʼs a direct download link : <https://web.archive.org/web/20190406165622/http://iginomarini.com/fell/wp-content/uploads/IMFellTypesClass.zip>. )
@@ -18,7 +26,7 @@ The Standard Edition style requires [Junicode](http://junicode.sourceforge.net/)
 
 The Largetype Edition style requires [Charis SIL](https://software.sil.org/charis/).
 
-The Trade Edition style required Palatino.
+The Trade Edition style requires Palatino.
 
 ### Caveats:
 

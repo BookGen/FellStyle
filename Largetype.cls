@@ -1,7 +1,7 @@
 % This style requires Charis SIL and the IM Fell Types.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{Largetype}
+\ProvidesClass{style}
 
 %%  Class loading and defaults:  %%
 
@@ -9,9 +9,18 @@
 
 \RequireXeTeX
 
+%%  Custom metadata:  %%
+
+\newcommand{\draftinfo}{} % Default to empty
+\newcommand{\detailsinfo}{}
+
 %%  Initial packages:  %%
 
 \RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+%%  Checking if empty:  %%
+\RequirePackage{ifmtarg}
+\newcommand{\ifexpandsnotmt}[2]{\expandafter\@ifnotmtarg\expandafter{#1}{#2}}
 
 %%  Font and language setup:  %%
 
@@ -164,8 +173,8 @@
 \renewcommand*{\precisfont}{\small\raggedleft}
 
 \copypagestyle{chapter}{plain}
-\makeevenhead{chapter}{}{\scriptsize\copyrightinfo}{}
-\makeoddhead{chapter}{}{\scriptsize\copyrightinfo}{}
+\makeevenhead{chapter}{}{\scriptsize\thecopyright}{}
+\makeoddhead{chapter}{}{\scriptsize\thecopyright}{}
 
 %%  Head styles:  %%
 
@@ -260,10 +269,12 @@
 \renewcommand{\maketitle}{
 	\pagestyle{empty}
 	\begin{smallpage}
-		{{\large \seriesinfo}
-		\par\bigskip
-		\par{\Huge \fellpattern{a} \titleinfo{} \fellpattern{c}}}
-		\par\descriptioninfo
+		{ % Throws an error if this isnʼt wrapped—for some reason
+			\ifexpandsnotmt{\seriesinfo}{{\large \seriesinfo}\par}
+			\null\bigskip\par
+			{\Huge \fellpattern{a} \titleinfo{} \fellpattern{c}}\par
+			\ifexpandsnotmt{\descriptioninfo}{\descriptioninfo}
+		}
 	\end{smallpage}
 	\clearpage\null\cleartorecto
 	\begin{center}
@@ -275,17 +286,17 @@
 			\par{\HUGE \caps{\MakeUppercase{\titleinfo}}}
 			\rule[.35em]{\dimexpr (\smallwidth * 3) / 5}{1pt}
 			\par\vspace{20.75pt}
-			\par\textsc{\large being a story of}
+			\ifexpandsnotmt{\seriesinfo}{\par\textsc{\large being a story of}
 			\par\vspace{10.2pt}
 			\par{\LARGE\itshape \seriesinfo}
-			\par\vspace{14.5pt}
+			\par\vspace{14.5pt}}
 			\par\textsc{\Large as recorded by}
 			\par\vspace{8.75pt}
 			\par{\huge \authorinfo}
 			\par\vspace{.45em}  %  Matches the spacing at the top of a \rule
 			\par{\huge\fellpattern{FQOH}}
 			\par\vfill
-			\par{\Large \fellflower{K} \publisherinfo{} \fellflower{J}}
+			\ifexpandsnotmt{\publisherinfo}{\par{\Large \fellflower{K} \publisherinfo{} \fellflower{J}}}
 		}}
 	\end{center}
 	\clearpage\null
@@ -298,12 +309,12 @@
 	\begin{center}
 		\begin{minipage}[t][\smallheight][t]{\smallwidth}
 			\parindent0pt\tiny
-			\detailsinfo
+			\ifexpandsnotmt{\detailsinfo}{\detailsinfo
 			\par\bigskip
-			\par\copyrightinfo
+			\par}\thecopyright
 			\par\medskip
 			\par This draft compiled \today{} at \printtime.
-			\par\editioninfo{} Edition, \draftinfo{}.
+			\par\styleinfo{} Edition\ifexpandsnotmt{\draftinfo}{, draft \draftinfo{}}.
 			\par\bigskip
 			\par Book design by the KIBI Gô.
 			\par\medskip
@@ -326,7 +337,6 @@
 
 %%  Defaults:  %%
 
-\RequirePackage{fmtcount}
 \setsecnumdepth{chapter}
 \pagenumbering{arabic}
 \openany
@@ -334,7 +344,7 @@
 \headstyles{classical}
 \chapterstyle{verbose7c}
 \newcommand{\mainchapterstyle}{verbose7c}
-\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tiny \detailsinfo\nolinebreak\qquad \copyrightinfo Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read. More information about this font and its design can be found on its website, \url{https://software.sil.com/charis/}.\nolinebreak\qquad Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinalstring{chapter} chapter of \seriesinfo{} – \titleinfo{}. Thank you for reading.\lastlinerulefill}}
+\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tiny\ifexpandsnotmt{\detailsinfo}{\leavevmode\detailsinfo\nolinebreak\qquad}\thecopyright{} Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read. More information about this font and its design can be found on its website, \url{https://software.sil.com/charis/}.\nolinebreak\qquad Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinaltoname{\value{chapter}} chapter of \ifexpandsnotmt{\seriesinfo}{\seriesinfo{} – }\titleinfo{}. Thank you for reading.\lastlinerulefill}}
 \tolerance=9999
 
 %%  Matter handling:  %%
