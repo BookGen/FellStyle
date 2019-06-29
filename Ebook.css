@@ -118,9 +118,10 @@ section.footnotes>ol {
 	List-Style: Inside Decimal;
 	List-Style: Inside FellStyle-Footnote;
 }
+section.footnotes>ol>li:Target { Outline: Thin Dashed }
 section.footnotes>ol>li::MARKER {
 	Vertical-Align: Super;
-	Font-Size: .5EM;
+	Font-Size: .6EM;
 	Line-Height: 0;
 }
 section.footnotes>ol>li>p:First-Child { Display: Contents }
@@ -148,7 +149,8 @@ section:Not(.footnotes) p::BEFORE {
 }
 *:Any-Link.footnote-ref {
 	Vertical-Align: Super;
-	Font-Size: .5EM;
+	Font-Size: .6EM;
+	Font-Variant-Numeric: Tabular-Nums;
 	Line-Height: 0;
 	Text-Decoration: None;
 }
