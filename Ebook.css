@@ -7,9 +7,18 @@
 	Prefix: "[";
 	Suffix: "] ";
 }
+@font-feature-values Junicode {
+	@styleset {
+		Insular: 02;
+		Enlarged-Minuscules: 06;
+		Long-Slashes: 10;
+		Oldstyle-Punctuation: 18;
+	}
+}
 *:Root{
 	Font: Normal Large / 1.15 Junicode, "Iowan Old Style", "Hoefler Text", "Charis SIL", "EB Garamond", Baskerville, "Times New Roman", Georgia, Times, Serif;
 	Font-Variant-Numeric: Oldstyle-Nums;
+	Font-Variant-Alternates: Styleset(Long-Slashes, Oldstyle-Punctuation);
 	Line-Height: 1.2;
 }
 html {
@@ -38,23 +47,40 @@ body {
 body[data-title-info]::BEFORE {
 	Display: Block;
 	Position: Absolute;
-	Top: 1.9REM;
+	Top: 2.9REM;
 	Left: 3REM;
 	Right: 3REM;
-	Height: 1.1REM;
 	Overflow: Hidden;
 	Font-Size: 1REM;
 	Line-Height: 1.1;
 	Letter-Spacing: .16EM;
 	White-Space: NoWrap;
 	Text-Overflow: Ellipsis;
-	Content: Attr(data-title-info);
+	Content: None;
 }
+body[data-series-info]::BEFORE { Content: Attr(data-series-info) }
+body[data-title-info]::BEFORE { Content: Attr(data-title-info) }
+body[data-series-info][data-title-info]::BEFORE { Content: Attr(data-series-info) " – " Attr(data-title-info) }
+body[data-publisher-info]::BEFORE {
+	Top: 7.3REM;
+	Content: Attr(data-publisher-info);
+}
+body[data-series-info][data-publisher-info]::BEFORE,
+body[data-title-info][data-publisher-info]::BEFORE {
+	Top: 1.25REM;
+	Line-Height: 4.4REM;
+	White-Space: Pre-Line;
+	Content: Attr(data-series-info) "\A" Attr(data-publisher-info);
+}
+body[data-title-info][data-publisher-info]::BEFORE { Content: Attr(data-title-info) "\A" Attr(data-publisher-info) }
+body[data-series-info][data-title-info][data-publisher-info]::BEFORE { Content: Attr(data-series-info) " – " Attr(data-title-info) "\A" Attr(data-publisher-info) }
 body[data-details-info]::AFTER {
 	Display: Block;
 	Margin: .5REM 0 0;
-	Font-Size: .75REM;
-	Line-Height: 1.35;
+	Font-Size: .6REM;
+	Line-Height: 1.65;
+	Font-Variant-Numeric: Lining-Nums;
+	Font-Variant-Alternates: Styleset(Enlarged-Minuscules, Long-Slashes);
 	Text-Align: Center;
 	White-Space: Pre-Line;
 	Content: Attr(data-details-info);
@@ -64,8 +90,10 @@ footer {
 	Margin: 0;
 	Border-Top: Thin Solid;
 	Padding: 1REM 0 0;
-	Font-Size: .75REM;
-	Line-Height: 1.35;
+	Font-Size: .6REM;
+	Font-Variant-Numeric: Lining-Nums;
+	Font-Variant-Alternates: Styleset(Enlarged-Minuscules, Long-Slashes);
+	Line-Height: 1.65;
 	Text-Align: Center;
 }
 article>section {
@@ -88,16 +116,31 @@ h1 {
 	Margin: 0 0 1REM;
 	Border-Bottom: Thin Solid;
 	Padding: 0 0 2.5REM;
+	Overflow: Hidden;
 	Font-Size: 3REM;
+	Font-Weight: Bold;
 	Font-Variant-Caps: Small-Caps;
 	Line-Height: 1.1;
+	White-Space: NoWrap;
+	Text-Overflow: Ellipsis;
 }
-h1::BEFORE { Content: Counter(BookGen-Chapter, Upper-Roman) " – " }
+html[data--book-gen-chapter] h1::BEFORE { Content: Counter(BookGen-Chapter, Upper-Roman) " – “ " }
+html[data--book-gen-chapter] h1::AFTER { Content: " ”"}
 h2 {
-	Margin: 0;
+	Margin: 1REM Auto;
+	Border-Bottom: Thin Solid;
+	Padding: 0 0 .5REM;
+	Max-Width: 16REM;
 	Text-Align: Center;
 	Font-Size: 1.5REM;
+	Font-Weight: Bold;
 	Line-Height: 1.1;
+}
+h3 {
+	Margin: 1REM 0;
+	Text-Align: Center;
+	Font: Inherit;
+	Font-Style: Italic;
 }
 hr {
 	Display: Block;
@@ -109,8 +152,14 @@ hr {
 }
 hr:Not(.plain)::AFTER { Content: "⁂" }
 hr.plain { Margin: 1.175REM Auto .675REM }
+dl { Margin: 1REM 0 }
 ol,
-ul { Margin: .5REM 0 0 }
+ul {
+	Margin: .5REM 0 0;
+	Padding-Left: 3REM;
+}
+dd ol,
+dd ul { Margin-Left: -3REM }
 ol {
 	List-Style: Upper-Roman;
 	List-Style: FellStyle-Order;
@@ -122,17 +171,28 @@ section.footnotes>ol {
 	List-Style: Inside Decimal;
 	List-Style: Inside FellStyle-Footnote;
 }
-section.footnotes>ol>li:Target { Outline: Thin Dashed }
+section.footnotes>ol>li:Target {
+	Outline: Thin Dashed;
+	Font-Weight: Bold;
+}
 section.footnotes>ol>li::MARKER {
 	Vertical-Align: Super;
 	Font-Size: .6EM;
+	Font-Variant-Numeric: Lining-Nums Tabular-Nums;
 	Line-Height: 0;
 }
 section.footnotes>ol>li>p:First-Child { Display: Contents }
+dt,
+dd,
 li,
 p {
 	Margin: .5REM 0 0;
 	Text-Align: Justify;
+}
+dt { Font-Weight: Bold }
+dd {
+	Position: Relative;
+	Padding-Left: 3REM;
 }
 div.line-block p,
 footer p { Text-Align: Inherit }
@@ -142,12 +202,13 @@ section:Not(.footnotes) p::BEFORE {
 	Width: 2.5REM;
 	Color: #75706A;
 	Font-Size: .75REM;
+	Font-Variant-Numeric: Lining-Nums Tabular-Nums;
 	Line-Height: 1.35;
 	Text-Align: Right;
 	Counter-Increment: Para;
 	Content: '¶ ' Counter(Para, Decimal-Leading-Zero)
 }
-div.line-block { Margin: 0 1.5REM }
+div.line-block { Margin: 0 .75REM }
 div.line-block p::BEFORE,
 div[role=note] p::BEFORE,
 div.continuation p::BEFORE {
@@ -169,17 +230,27 @@ div.alternating.verse>div.line-block>p>span.line-item:Nth-Of-Type(Even) { Paddin
 *:Any-Link.footnote-ref {
 	Vertical-Align: Super;
 	Font-Size: .6EM;
-	Font-Variant-Numeric: Tabular-Nums;
+	Font-Variant-Numeric: Lining-Nums Tabular-Nums;
 	Line-Height: 0;
 	Text-Decoration: None;
 }
 *:Any-Link.footnote-ref::BEFORE { Content: "[" }
 *:Any-Link.footnote-ref::AFTER { Content: "]" }
+*:Any-Link.footnote-ref:Target { Font-Weight: Bold }
 *:Any-Link.footnote-ref sup { Vertical-Align: Baseline }
 *:Any-Link.footnote-back { Margin-Left: .5EM }
-em {
-	Font-Style: Inherit;
-	Text-Decoration: Underline;
+em { Letter-Spacing: .08EM }
+span[data-font=normalfont] {
+	Font-Variant-Alternates: Styleset(Long-Slashes, Oldstyle-Punctuation);
+	Font-Variant-Ligatures: Normal;
+}
+span[data-font=vanillafont] {
+	Font-Variant-Alternates: Normal;
+	Font-Variant-Ligatures: Normal;
+}
+span[data-font=insularfont] {
+	Font-Variant-Alternates: Styleset(Insular, Long-Slashes, Oldstyle-Punctuation);
+	Font-Variant-Ligatures: No-Common-Ligatures;
 }
 strong {
 	Font-Weight: Inherit;

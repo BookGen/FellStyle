@@ -26,7 +26,9 @@
 \setmainlanguage[variant=uk,ordinalmonthday=false]{english}
 \setmainfont{Palatino}
 \newfontfamily{\vanillafont}{Palatino}
+\newfontfamily{\insularfont}{Palatino}
 \newcommand{\textvanilla}[1]{{\vanillafont #1}}
+\newcommand{\textinsular}[1]{{\insularfont #1}}
 \newcommand{\subs}[1]{\raisebox{-.35ex}{\scriptsize #1}}
 \newcommand{\supers}[1]{\raisebox{.7ex}{\scriptsize #1}}
 
@@ -170,7 +172,8 @@
 %%  Head styles:  %%
 
 \renewcommand{\thesection}{\arabic{section}}
-\newcommand{\secheadfmt}[1]{\noindent\hfill\parbox[t]{\textwidth}{\centering#1}\hfill}
+\newcommand{\secheadfmt}[1]{\noindent\hfill\parbox[t]{\textwidth}{\centering#1\par\vspace{9.5pt plus 3.5pt minus 2.25pt}\hrule}\hfill}
+\newcommand{\subsecheadfmt}[1]{\noindent\hfill\parbox[t]{\textwidth}{\centering#1}\hfill}
 \sethangfrom{\noindent #1}
 \makeheadstyles{classical}{
 	\nobookblankpage
@@ -191,8 +194,11 @@
 	\chapterstyle{IMextra}
 	\setbeforesecskip{-19pt plus 3.5pt minus 5.75pt}
 	\setaftersecskip{19pt plus 5.75pt minus 3.5pt}
-	\setsechook{\setsecnumformat{{\normalfont\upshape\bfseries\thesection}\par}}
-	\setsecheadstyle{\normalfont\itshape\secheadfmt}
+	\setsecheadstyle{\normalfont\Large\secheadfmt}
+	\setbeforesubsecskip{-19pt plus 3.5pt minus 5.75pt}
+	\setaftersubsecskip{19pt plus 5.75pt minus 3.5pt}
+	\setsubsechook{\setsecnumformat{{\normalfont\upshape\bfseries\thesubsection}\par}}
+	\setsubsecheadstyle{\normalfont\itshape\subsecheadfmt}
 }
 
 %%  Small pages:  %%
@@ -255,13 +261,12 @@
 %%  The title:  %%
 \renewcommand{\maketitle}{
 	\pagestyle{empty}
-	\begin{smallpage}
-		{ % Throws an error if this isnʼt wrapped—for some reason
-			\ifexpandsnotmt{\seriesinfo}{{\large \seriesinfo}\par}
-			\null\bigskip\par
-			{\Huge \textasciitilde{} \titleinfo{} \textasciitilde{}}\par
-			\ifexpandsnotmt{\descriptioninfo}{\descriptioninfo}
-		}
+	\begin{smallpage}{
+		\ifexpandsnotmt{\seriesinfo}{{\large \seriesinfo}\par}
+		\null\bigskip\par
+		{\Huge \textasciitilde{} \titleinfo{} \textasciitilde{}}\par
+	}
+	\ifexpandsnotmt{\descriptioninfo}{\descriptioninfo}
 	\end{smallpage}
 	\clearpage\null\cleartorecto
 	\begin{center}

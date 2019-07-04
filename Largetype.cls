@@ -28,10 +28,12 @@
 \setmainlanguage[variant=uk,ordinalmonthday=false]{english}
 \setmainfont{Charis SIL}
 \newfontfamily{\vanillafont}{Charis SIL}
+\newfontfamily{\insularfont}{Charis SIL}
 \newfontface{\initials}{IM FELL THREE LINE PICA PRO}
 \newfontface{\IMFlowerfontA}{IM FELL FLOWERS 1}
 \newfontface{\IMFlowerfontB}{IM FELL FLOWERS 2}
 \newcommand{\textvanilla}[1]{{\vanillafont #1}}
+\newcommand{\textinsular}[1]{{\insularfont #1}}
 \newcommand{\fellpattern}[1]{\raisebox{.35em}{\IMFlowerfontA #1}}
 \newcommand{\fellflower}[1]{{\IMFlowerfontB #1}}
 \newcommand{\subs}[1]{\raisebox{-.35ex}{\scriptsize #1}}
@@ -183,7 +185,8 @@
 %%  Head styles:  %%
 
 \renewcommand{\thesection}{\arabic{section}}
-\newcommand{\secheadfmt}[1]{\noindent\hfill\parbox[t]{\smallwidth}{\centering#1}\hfill}
+\newcommand{\secheadfmt}[1]{\noindent\hfill\parbox[t]{\smallwidth}{\centering#1\par\vspace{11pt plus 5pt minus 3pt}\hrule}\hfill}
+\newcommand{\subsecheadfmt}[1]{\noindent\hfill\parbox[t]{\smallwidth}{\centering#1}\hfill}
 \sethangfrom{\noindent #1}
 \makeheadstyles{classical}{
 	\nobookblankpage
@@ -204,8 +207,11 @@
 	\chapterstyle{IMextra}
 	\setbeforesecskip{-22pt plus 4pt minus 7pt}
 	\setaftersecskip{22pt plus 7pt minus 4pt}
-	\setsechook{\setsecnumformat{{\normalfont\upshape\bfseries\thesection}\par}}
-	\setsecheadstyle{\normalfont\itshape\secheadfmt}
+	\setsecheadstyle{\normalfont\Large\secheadfmt}
+	\setbeforesubsecskip{-22pt plus 4pt minus 7pt}
+	\setaftersubsecskip{22pt plus 7pt minus 4pt}
+	\setsubsechook{\setsecnumformat{{\normalfont\upshape\bfseries\thesubsection}\par}}
+	\setsubsecheadstyle{\normalfont\itshape\subsecheadfmt}
 }
 
 %%  Small pages:  %%
@@ -272,13 +278,12 @@
 %%  The title:  %%
 \renewcommand{\maketitle}{
 	\pagestyle{empty}
-	\begin{smallpage}
-		{ % Throws an error if this isnʼt wrapped—for some reason
-			\ifexpandsnotmt{\seriesinfo}{{\large \seriesinfo}\par}
-			\null\bigskip\par
-			{\Huge \fellpattern{a} \titleinfo{} \fellpattern{c}}\par
-			\ifexpandsnotmt{\descriptioninfo}{\descriptioninfo}
-		}
+	\begin{smallpage}{
+		\ifexpandsnotmt{\seriesinfo}{{\large \seriesinfo}\par}
+		\null\bigskip\par
+		{\Huge \fellpattern{a} \titleinfo{} \fellpattern{c}}\par
+	}
+	\ifexpandsnotmt{\descriptioninfo}{\descriptioninfo}
 	\end{smallpage}
 	\clearpage\null\cleartorecto
 	\begin{center}
