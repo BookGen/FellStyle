@@ -12,7 +12,7 @@
 %%  Custom metadata:  %%
 
 \newcommand{\draftinfo}{} % Default to empty
-\newcommand{\detailsinfo}{}
+\newcommand{\publicationdetailsinfo}{}
 
 %%  Initial packages:  %%
 
@@ -355,22 +355,19 @@
 	\vfill
 	\begin{center}
 		\begin{minipage}[t][\smallheight][t]{\smallwidth}
-			\parindent0pt
-			\tinybig
-			\ifexpandsnotmt{\detailsinfo}{\detailsinfo
-			\par\bigskip
-			\par}\thecopyright
-			\par\medskip
-			\par This draft compiled \today{} at \printtime.
+			\parindent0pt\tinybig
+			\ifexpandsnotmt{\publicationdetailsinfo}{\publicationdetailsinfo\par\bigskip}
+			\ifexpandsnotmt{\thecopyright}{\thecopyright\par\medskip}
+			This draft compiled \today{} at \printtime.
 			\par\styleinfo{} Edition\ifexpandsnotmt{\draftinfo}{, draft \draftinfo{}}.
 			\par\bigskip
-			\par Book design by the KIBI Gô.
+			Book design by the KIBI Gô.
 			\par\medskip
-			\par This work is formatted via \XeLaTeX{}.
+			This work is formatted via \XeLaTeX{}.
 			Body text is set in 12pt Junicode, a font inspired by the early eighteenth-century Oxford University Press.
 			More information about this font and its origins can be found on its website, \url{https://junicode.sourceforge.net/}.
 			\par\medskip
-			\par Headings are set in the closely-related Fell Types in various cuts and sizes—as are certain spans of text, for effect.
+			Headings are set in the closely-related Fell Types in various cuts and sizes—as are certain spans of text, for effect.
 			The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.
 			\par\bigskip
 			\par\vfill
@@ -393,7 +390,7 @@
 \headstyles{classical}
 \chapterstyle{verbose7c}
 \newcommand{\mainchapterstyle}{verbose7c}
-\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tinybig\ifexpandsnotmt{\detailsinfo}{\leavevmode\detailsinfo\nolinebreak\qquad}\thecopyright{} Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 12pt Junicode, a font inspired by the early eighteenth­‑century Oxford University Press. More information about this font and its origins can be found on its website, \url{https://junicode.sourceforge.net/}.\nolinebreak\qquad Headings have been set in the closely­‑related Fell Types in various cuts and sizes—as are certain spans of text, for effect. The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinaltoname{\value{chapter}} chapter of \ifexpandsnotmt{\seriesinfo}{\seriesinfo{} – }\titleinfo{}. Thank you for reading.\lastlinerulefill}}
+\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tinybig\ifexpandsnotmt{\publicationdetailsinfo}{\leavevmode\publicationdetailsinfo\nolinebreak\qquad}\ifexpandsnotmt{\thecopyright}{\thecopyright{} }Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 12pt Junicode, a font inspired by the early eighteenth­‑century Oxford University Press. More information about this font and its origins can be found on its website, \url{https://junicode.sourceforge.net/}.\nolinebreak\qquad Headings have been set in the closely­‑related Fell Types in various cuts and sizes—as are certain spans of text, for effect. The Fell Types are digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinaltoname{\value{chapter}} chapter of \ifexpandsnotmt{\seriesinfo}{\seriesinfo{} – }\titleinfo{}. Thank you for reading.\lastlinerulefill}}
 \tolerance=5000
 
 %%  Matter handling:  %%

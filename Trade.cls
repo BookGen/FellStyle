@@ -18,7 +18,7 @@
 %%  Custom metadata:  %%
 
 \newcommand{\draftinfo}{} % Default to empty
-\newcommand{\detailsinfo}{}
+\newcommand{\publicationdetailsinfo}{}
 
 %%  Font and language setup:  %%
 
@@ -300,16 +300,14 @@
 	\vfill
 	{
 		\parindent0pt\tiny
-		\ifexpandsnotmt{\detailsinfo}{\detailsinfo
-		\par\bigskip
-		\par}\thecopyright
-		\par\medskip
-		\par This draft compiled \today{} at \printtime.
+		\ifexpandsnotmt{\publicationdetailsinfo}{\publicationdetailsinfo\par\bigskip}
+		\ifexpandsnotmt{\thecopyright}{\thecopyright\par\medskip}
+		This draft compiled \today{} at \printtime.
 		\par\styleinfo{} Edition\ifexpandsnotmt{\draftinfo}{, draft \draftinfo{}}.
 		\par\bigskip
-		\par Book design by the KIBI Gô.
+		Book design by the KIBI Gô.
 		\par\medskip
-		\par This work is formatted via \XeLaTeX{}.
+		This work is formatted via \XeLaTeX{}.
 		Body text has been set in 14pt Palatino.
 		\par\bigskip
 		\par\vfill
@@ -331,7 +329,7 @@
 \headstyles{classical}
 \chapterstyle{verbose7c}
 \newcommand{\mainchapterstyle}{verbose7c}
-\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\textwidth}{\tiny\ifexpandsnotmt{\detailsinfo}{\leavevmode\detailsinfo\nolinebreak\qquad}\thecopyright{} Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 14pt Palatino.\nolinebreak\qquad This has been the \ordinaltoname{\value{chapter}} chapter of \ifexpandsnotmt{\seriesinfo}{\seriesinfo{} – }\titleinfo{}. Thank you for reading.\lastlinerulefill}}
+\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\textwidth}{\tiny\ifexpandsnotmt{\publicationdetailsinfo}{\leavevmode\publicationdetailsinfo\nolinebreak\qquad}\ifexpandsnotmt{\thecopyright}{\thecopyright{} }Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 14pt Palatino.\nolinebreak\qquad This has been the \ordinaltoname{\value{chapter}} chapter of \ifexpandsnotmt{\seriesinfo}{\seriesinfo{} – }\titleinfo{}. Thank you for reading.\lastlinerulefill}}
 \tolerance=9999
 
 %%  Matter handling:  %%

@@ -12,7 +12,7 @@
 %%  Custom metadata:  %%
 
 \newcommand{\draftinfo}{} % Default to empty
-\newcommand{\detailsinfo}{}
+\newcommand{\publicationdetailsinfo}{}
 
 %%  Initial packages:  %%
 
@@ -318,20 +318,18 @@
 	\begin{center}
 		\begin{minipage}[t][\smallheight][t]{\smallwidth}
 			\parindent0pt\tiny
-			\ifexpandsnotmt{\detailsinfo}{\detailsinfo
-			\par\bigskip
-			\par}\thecopyright
-			\par\medskip
-			\par This draft compiled \today{} at \printtime.
+			\ifexpandsnotmt{\publicationdetailsinfo}{\publicationdetailsinfo\par\bigskip}
+			\ifexpandsnotmt{\thecopyright}{\thecopyright\par\medskip}
+			This draft compiled \today{} at \printtime.
 			\par\styleinfo{} Edition\ifexpandsnotmt{\draftinfo}{, draft \draftinfo{}}.
 			\par\bigskip
-			\par Book design by the KIBI Gô.
+			Book design by the KIBI Gô.
 			\par\medskip
-			\par This work is formatted via \XeLaTeX{}.
+			This work is formatted via \XeLaTeX{}.
 			Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read.
 			More information about this font and its design can be found on its website, \url{https://software.sil.org/charis/}.
 			\par\medskip
-			\par Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.
+			Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.
 			\par\bigskip
 			\par\vfill
 		\end{minipage}
@@ -353,7 +351,7 @@
 \headstyles{classical}
 \chapterstyle{verbose7c}
 \newcommand{\mainchapterstyle}{verbose7c}
-\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tiny\ifexpandsnotmt{\detailsinfo}{\leavevmode\detailsinfo\nolinebreak\qquad}\thecopyright{} Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read. More information about this font and its design can be found on its website, \url{https://software.sil.com/charis/}.\nolinebreak\qquad Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinaltoname{\value{chapter}} chapter of \ifexpandsnotmt{\seriesinfo}{\seriesinfo{} – }\titleinfo{}. Thank you for reading.\lastlinerulefill}}
+\newcommand{\atendtext}{\par\vfill\centering\pagebreak[1]\null\vfill\parbox[b]{\smallwidth}{\tiny\ifexpandsnotmt{\publicationdetailsinfo}{\leavevmode\publicationdetailsinfo\nolinebreak\qquad}\ifexpandsnotmt{\thecopyright}{\thecopyright{} }Text design by the KIBI Gô. This work was formatted via \XeLaTeX{}, and this draft was compiled \today{} at \printtime{}.\nolinebreak\qquad Body text has been set in 17pt Charis SIL, a font specially designed to make long texts easier to read. More information about this font and its design can be found on its website, \url{https://software.sil.com/charis/}.\nolinebreak\qquad Text ornaments and drop caps have been set in the Fell Types, digitally reproduced by Igino Marini. \url{https://iginomarini.com/}.\nolinebreak\qquad This has been the \ordinaltoname{\value{chapter}} chapter of \ifexpandsnotmt{\seriesinfo}{\seriesinfo{} – }\titleinfo{}. Thank you for reading.\lastlinerulefill}}
 \tolerance=9999
 
 %%  Matter handling:  %%
