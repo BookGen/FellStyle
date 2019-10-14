@@ -1,3 +1,6 @@
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace epub "http://www.idpf.org/2007/ops";
+
 @counter-style FellStyle-Order {
 	System: Extends Upper-Roman;
 	Suffix: " – ";
@@ -16,10 +19,9 @@
 	}
 }
 *:Root{
-	Font: Normal Large / 1.15 Junicode, "Iowan Old Style", "Hoefler Text", "Charis SIL", "EB Garamond", Baskerville, "Times New Roman", Georgia, Times, Serif;
+	Font: Normal Large / 1.2 Junicode, "Iowan Old Style", "Hoefler Text", "Charis SIL", "EB Garamond", Baskerville, "Times New Roman", Georgia, Times, Serif;
 	Font-Variant-Numeric: Oldstyle-Nums;
 	Font-Variant-Alternates: Styleset(Long-Slashes, Oldstyle-Punctuation);
-	Line-Height: 1.2;
 }
 html {
 	Margin: 0;
@@ -44,50 +46,18 @@ body {
 		Background: #FAF8F7;
 	}
 }
-body[data-title-info]::BEFORE {
-	Display: Block;
-	Position: Absolute;
-	Top: 2.9REM;
-	Left: 3REM;
-	Right: 3REM;
-	Overflow: Hidden;
-	Font-Size: 1REM;
-	Line-Height: 1.1;
-	Letter-Spacing: .16EM;
-	White-Space: NoWrap;
-	Text-Overflow: Ellipsis;
-	Content: None;
-}
-body[data-series-info]::BEFORE { Content: Attr(data-series-info) }
-body[data-title-info]::BEFORE { Content: Attr(data-title-info) }
-body[data-series-info][data-title-info]::BEFORE { Content: Attr(data-series-info) " – " Attr(data-title-info) }
-body[data-publisher-info]::BEFORE {
-	Top: 7.3REM;
-	Content: Attr(data-publisher-info);
-}
-body[data-series-info][data-publisher-info]::BEFORE,
-body[data-title-info][data-publisher-info]::BEFORE {
-	Top: 1.25REM;
-	Line-Height: 4.4REM;
-	White-Space: Pre-Line;
-	Content: Attr(data-series-info) "\A" Attr(data-publisher-info);
-}
-body[data-title-info][data-publisher-info]::BEFORE { Content: Attr(data-title-info) "\A" Attr(data-publisher-info) }
-body[data-series-info][data-title-info][data-publisher-info]::BEFORE { Content: Attr(data-series-info) " – " Attr(data-title-info) "\A" Attr(data-publisher-info) }
-body[data-details-info]::AFTER {
-	Display: Block;
-	Margin: .5REM 0 0;
-	Font-Size: .6REM;
-	Line-Height: 1.65;
-	Font-Variant-Numeric: Lining-Nums;
-	Font-Variant-Alternates: Styleset(Enlarged-Minuscules, Long-Slashes);
-	Text-Align: Center;
-	White-Space: Pre-Line;
-	Content: Attr(data-details-info);
-}
 article { Position: Relative }
+header {
+	Display: Block;
+	Margin: 0 0 1REM;
+	Border-Bottom: Thin Solid;
+	Padding: 0 0 2.5REM;
+	Font-Size: 1REM;
+	Letter-Spacing: .16EM;
+	Line-Height: 1;
+}
 footer {
-	Margin: 0;
+	Margin: .5REM 0 0;
 	Border-Top: Thin Solid;
 	Padding: 1REM 0 0;
 	Font-Size: .6REM;
@@ -96,14 +66,24 @@ footer {
 	Line-Height: 1.65;
 	Text-Align: Center;
 }
-article>section {
+#FellStyle\.footer+footer {
+	Border-Top: None;
+	Padding-Top: 0;
+}
+#FellStyle\.main {
 	Position: Relative;
 	Margin: 0 -3REM;
 	Padding: 1REM 3REM;
 	Counter-Reset: Para;
 }
+#FellStyle\.main\.next {
+	Display: Block;
+	Margin: .5REM 0 0;
+	Font-Variant-Caps: Small-Caps;
+	Text-Align: Right;
+}
 section.footnotes hr {
-	Margin: -1REM 0 1REM;
+	Margin: 0;
 	Border-Top: Thin Solid;
 }
 section.footnotes hr::AFTER { Content: None }
@@ -113,19 +93,14 @@ blockquote {
 	Font-Style: Italic;
 }
 h1 {
-	Margin: 0 0 1REM;
-	Border-Bottom: Thin Solid;
-	Padding: 0 0 2.5REM;
-	Overflow: Hidden;
+	Margin: .5REM 0;
 	Font-Size: 3REM;
 	Font-Weight: Bold;
 	Font-Variant-Caps: Small-Caps;
-	Line-Height: 1.1;
-	White-Space: NoWrap;
-	Text-Overflow: Ellipsis;
+	Line-Height: 1;
 }
-html[data--book-gen-chapter] h1::BEFORE { Content: Counter(BookGen-Chapter, Upper-Roman) " – “ " }
-html[data--book-gen-chapter] h1::AFTER { Content: " ”"}
+h1:Not(.unnumbered)::BEFORE { Content: Counter(BookGen-Chapter, Upper-Roman) " – “" }
+h1:Not(.unnumbered)::AFTER { Content: "”"}
 h2 {
 	Margin: 1REM Auto;
 	Border-Bottom: Thin Solid;
@@ -164,9 +139,10 @@ ol {
 	List-Style: Upper-Roman;
 	List-Style: FellStyle-Order;
 }
-[data--book-gen-type=index] ol { List-Style: None }
-[data--book-gen-type=index] ol ol { List-Style: Decimal-Leading-Zero }
+[data--book-gen-type=index] nav[epub|type] ol { List-Style: None }
+[data--book-gen-type=index] nav[epub|type] ol ol { List-Style: Decimal-Leading-Zero }
 section.footnotes>ol {
+	Margin: 1REM 0;
 	Padding: 0;
 	List-Style: Inside Decimal;
 	List-Style: Inside FellStyle-Footnote;
@@ -227,6 +203,8 @@ div.alternating.verse>div.line-block>p>span.line-item:Nth-Of-Type(Even) { Paddin
 *:Any-Link { Color: #4B2DF7 }
 *:Any-Link:Hover { Color: #302F2B }
 *:Any-Link:Active { Color: Inherit }
+header *:Any-Link,
+header *:Any-Link:Hover { Color: Inherit }
 *:Any-Link.footnote-ref {
 	Vertical-Align: Super;
 	Font-Size: .6EM;
