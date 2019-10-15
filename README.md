@@ -23,7 +23,7 @@ Requires the following additional TeX packages to be installed on your system:
 ### Fonts (for PDF)
 
 Both PDF styles require the [IM Fell](https://iginomarini.com/fell/the-revival-fonts/) fonts.
-(If IM Fell website is having issues, an archived download link is here: <https://web.archive.org/web/20190406165622/http://iginomarini.com/fell/wp-content/uploads/IMFellTypesClass.zip>.)
+(The font is also available from [Google Fonts](https://fonts.google.com/?query=im+fell).)
 
 The Standard Edition style requires [Junicode](http://junicode.sourceforge.net/).
 

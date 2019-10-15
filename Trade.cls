@@ -275,7 +275,7 @@
 			\centering
 			\rule[.35em]{\dimexpr (\textwidth * 3) / 5}{1pt}
 			\par\vspace{4.2pt}
-			\par{\HUGE \caps{\MakeUppercase{\titleinfo}}}
+			\par{\Huge \caps{\MakeUppercase{\titleinfo}}}
 			\rule[.35em]{\dimexpr (\textwidth * 3) / 5}{1pt}
 			\ifexpandsnotmt{\seriesinfo}{\par\vspace{17pt}
 			\par\textsc{\large being a story of}
